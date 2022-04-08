@@ -84,7 +84,7 @@ namespace Crypyography
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtUserDeleteId = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDelete = new System.Windows.Forms.DataGridView();
             this.btnActivate = new System.Windows.Forms.Button();
             this.btnSuspend = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -97,7 +97,7 @@ namespace Crypyography
             this.groupBox2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -571,7 +571,7 @@ namespace Crypyography
             this.tabPage1.Controls.Add(this.btnDelete);
             this.tabPage1.Controls.Add(this.btnSuspend);
             this.tabPage1.Controls.Add(this.btnActivate);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dataGridViewDelete);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -649,6 +649,7 @@ namespace Crypyography
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClear
             // 
@@ -660,6 +661,7 @@ namespace Crypyography
             this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtUserDeleteId
             // 
@@ -668,13 +670,13 @@ namespace Crypyography
             this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
             this.txtUserDeleteId.TabIndex = 7;
             // 
-            // dataGridView1
+            // dataGridViewDelete
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(77, 247);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(569, 150);
-            this.dataGridView1.TabIndex = 7;
+            this.dataGridViewDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDelete.Location = new System.Drawing.Point(77, 247);
+            this.dataGridViewDelete.Name = "dataGridViewDelete";
+            this.dataGridViewDelete.Size = new System.Drawing.Size(569, 150);
+            this.dataGridViewDelete.TabIndex = 7;
             // 
             // btnActivate
             // 
@@ -713,6 +715,7 @@ namespace Crypyography
             this.Controls.Add(this.tControl);
             this.Name = "LandingPage";
             this.Text = "LandingPage";
+            this.Load += new System.EventHandler(this.LandingPage_Load_1);
             this.tControl.ResumeLayout(false);
             this.ChooseFile.ResumeLayout(false);
             this.ChooseFile.PerformLayout();
@@ -727,7 +730,7 @@ namespace Crypyography
             this.tabPage1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -789,7 +792,7 @@ namespace Crypyography
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSuspend;
         private System.Windows.Forms.Button btnActivate;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewDelete;
         private System.Windows.Forms.TextBox txtUserDeleteId;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;

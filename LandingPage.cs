@@ -23,6 +23,7 @@ namespace Crypyography
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter adapt;
+        DataSet ds;
 
         public LandingPage()
         {
@@ -33,13 +34,15 @@ namespace Crypyography
             cboxDeleteDe.Enabled = false;
         }
 
-        private void LandingPage_Load(object sender, EventArgs e)
+        private void LandingPage_Load_1(object sender, EventArgs e)
         {
             string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
             C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
             con = new SqlConnection(conString);
-        }
 
+            
+            
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -312,12 +315,64 @@ namespace Crypyography
 
         private void button3_Click(object sender, EventArgs e)
         {
+            try
+            {
+                con.Open();
+                adapt = new SqlDataAdapter();
+                string sqlDelete = "DELETE [user] WHERE Id='"+txtUserDeleteId.Text+"'";
+                string sqlDeleteAll = "DELETE * FROM [user]";
+                cmd = new SqlCommand();
 
+                adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
+                adapt.DeleteCommand.ExecuteNonQuery();
+
+                MessageBox.Show("User Removed", "user removed", MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
+                cmd.Dispose();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                con.Open();
+
+                string sql;
+                adapt = new SqlDataAdapter();
+                sql = @"Select * FROM [user]";
+                cmd = new SqlCommand(sql, con);
+                ds = new DataSet();
+                adapt.SelectCommand = cmd;
+                adapt.Fill(ds, "Info");
+                dataGridViewDelete.DataSource = ds;
+                dataGridViewDelete.DataMember = "Info";
+
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in base64Encode" + ex.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtUserDeleteId.Clear();
         }
     }
 }
