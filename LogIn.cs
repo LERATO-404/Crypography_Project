@@ -83,11 +83,17 @@ namespace Crypyography
                     string query = "SELECT * from [user] WHERE username ='" + txtUserNameEmail.Text + "' AND password ='" + encryptPass + "'";
                     if (txtPasswordLog.Text == decryptPassword(encryptPass))
                     {
+                        
+                        
                         cmd = new SqlCommand(query, con);
                         myReader = cmd.ExecuteReader();
                         if (myReader.HasRows)
                         {
                             LandingPage landingP = new LandingPage();
+                            if (txtUserNameEmail.Text == "admin" && decryptPassword(encryptPass) == "admin")
+                            {
+                                landingP.Admin.Enabled = true;
+                            }
                             landingP.Show();
 
                         }

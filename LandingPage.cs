@@ -32,6 +32,7 @@ namespace Crypyography
             btnProceed.Enabled = false;
             cboxDeleteEn.Enabled = false;
             cboxDeleteDe.Enabled = false;
+            Admin.Enabled = false;
         }
 
         private void LandingPage_Load_1(object sender, EventArgs e)
@@ -39,10 +40,10 @@ namespace Crypyography
             string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
             C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
             con = new SqlConnection(conString);
-
-            
             
         }
+
+      
 
         private void label1_Click(object sender, EventArgs e)
         {

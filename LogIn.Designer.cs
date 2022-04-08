@@ -119,10 +119,10 @@ namespace Crypyography
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUserNameEmail;
-        private System.Windows.Forms.TextBox txtPasswordLog;
         private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TextBox txtUserNameEmail;
+        public System.Windows.Forms.TextBox txtPasswordLog;
     }
 }
 

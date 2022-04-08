@@ -74,20 +74,20 @@ namespace Crypyography
             this.txtKeyDe = new System.Windows.Forms.TextBox();
             this.cboxDeleteDe = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblUserCount = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.txtUserDeleteId = new System.Windows.Forms.TextBox();
-            this.dataGridViewDelete = new System.Windows.Forms.DataGridView();
-            this.btnActivate = new System.Windows.Forms.Button();
-            this.btnSuspend = new System.Windows.Forms.Button();
+            this.Admin = new System.Windows.Forms.TabPage();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSuspend = new System.Windows.Forms.Button();
+            this.btnActivate = new System.Windows.Forms.Button();
+            this.dataGridViewDelete = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtUserDeleteId = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblUserCount = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -95,9 +95,9 @@ namespace Crypyography
             this.groupBox1.SuspendLayout();
             this.Decrypt.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.Admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -171,7 +171,7 @@ namespace Crypyography
             this.tControl.Controls.Add(this.ChooseFile);
             this.tControl.Controls.Add(this.Encrypt);
             this.tControl.Controls.Add(this.Decrypt);
-            this.tControl.Controls.Add(this.tabPage1);
+            this.tControl.Controls.Add(this.Admin);
             this.tControl.Location = new System.Drawing.Point(15, 12);
             this.tControl.Name = "tControl";
             this.tControl.SelectedIndex = 0;
@@ -565,64 +565,56 @@ namespace Crypyography
             this.label10.TabIndex = 1;
             this.label10.Text = "Key:";
             // 
-            // tabPage1
+            // Admin
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.btnDelete);
-            this.tabPage1.Controls.Add(this.btnSuspend);
-            this.tabPage1.Controls.Add(this.btnActivate);
-            this.tabPage1.Controls.Add(this.dataGridViewDelete);
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(752, 400);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Admin";
+            this.Admin.BackColor = System.Drawing.SystemColors.Control;
+            this.Admin.Controls.Add(this.btnDelete);
+            this.Admin.Controls.Add(this.btnSuspend);
+            this.Admin.Controls.Add(this.btnActivate);
+            this.Admin.Controls.Add(this.dataGridViewDelete);
+            this.Admin.Controls.Add(this.groupBox5);
+            this.Admin.Location = new System.Drawing.Point(4, 22);
+            this.Admin.Name = "Admin";
+            this.Admin.Size = new System.Drawing.Size(752, 400);
+            this.Admin.TabIndex = 3;
+            this.Admin.Text = "Admin";
             // 
-            // label3
+            // btnDelete
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "User Management";
+            this.btnDelete.Location = new System.Drawing.Point(348, 205);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label11
+            // btnSuspend
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "You have ";
+            this.btnSuspend.Location = new System.Drawing.Point(267, 205);
+            this.btnSuspend.Name = "btnSuspend";
+            this.btnSuspend.Size = new System.Drawing.Size(75, 23);
+            this.btnSuspend.TabIndex = 9;
+            this.btnSuspend.Text = "Suspend";
+            this.btnSuspend.UseVisualStyleBackColor = true;
             // 
-            // lblUserCount
+            // btnActivate
             // 
-            this.lblUserCount.AutoSize = true;
-            this.lblUserCount.Location = new System.Drawing.Point(69, 64);
-            this.lblUserCount.Name = "lblUserCount";
-            this.lblUserCount.Size = new System.Drawing.Size(35, 13);
-            this.lblUserCount.TabIndex = 2;
-            this.lblUserCount.Text = "Count";
+            this.btnActivate.Location = new System.Drawing.Point(186, 205);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 8;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // label12
+            // dataGridViewDelete
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(110, 64);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "registered users";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 99);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 13);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "userId";
+            this.dataGridViewDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDelete.Location = new System.Drawing.Point(77, 247);
+            this.dataGridViewDelete.Name = "dataGridViewDelete";
+            this.dataGridViewDelete.Size = new System.Drawing.Size(569, 150);
+            this.dataGridViewDelete.TabIndex = 7;
             // 
             // groupBox5
             // 
@@ -640,16 +632,12 @@ namespace Crypyography
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             // 
-            // btnSearch
+            // txtUserDeleteId
             // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearch.Location = new System.Drawing.Point(19, 140);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.txtUserDeleteId.Location = new System.Drawing.Point(58, 96);
+            this.txtUserDeleteId.Name = "txtUserDeleteId";
+            this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
+            this.txtUserDeleteId.TabIndex = 7;
             // 
             // btnClear
             // 
@@ -663,49 +651,61 @@ namespace Crypyography
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // txtUserDeleteId
+            // btnSearch
             // 
-            this.txtUserDeleteId.Location = new System.Drawing.Point(58, 96);
-            this.txtUserDeleteId.Name = "txtUserDeleteId";
-            this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
-            this.txtUserDeleteId.TabIndex = 7;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.Location = new System.Drawing.Point(19, 140);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // dataGridViewDelete
+            // lblUserCount
             // 
-            this.dataGridViewDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDelete.Location = new System.Drawing.Point(77, 247);
-            this.dataGridViewDelete.Name = "dataGridViewDelete";
-            this.dataGridViewDelete.Size = new System.Drawing.Size(569, 150);
-            this.dataGridViewDelete.TabIndex = 7;
+            this.lblUserCount.AutoSize = true;
+            this.lblUserCount.Location = new System.Drawing.Point(69, 64);
+            this.lblUserCount.Name = "lblUserCount";
+            this.lblUserCount.Size = new System.Drawing.Size(35, 13);
+            this.lblUserCount.TabIndex = 2;
+            this.lblUserCount.Text = "Count";
             // 
-            // btnActivate
+            // label13
             // 
-            this.btnActivate.Location = new System.Drawing.Point(186, 205);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 8;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.button1_Click_1);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 99);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "userId";
             // 
-            // btnSuspend
+            // label3
             // 
-            this.btnSuspend.Location = new System.Drawing.Point(267, 205);
-            this.btnSuspend.Name = "btnSuspend";
-            this.btnSuspend.Size = new System.Drawing.Size(75, 23);
-            this.btnSuspend.TabIndex = 9;
-            this.btnSuspend.Text = "Suspend";
-            this.btnSuspend.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "User Management";
             // 
-            // btnDelete
+            // label12
             // 
-            this.btnDelete.Location = new System.Drawing.Point(348, 205);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.button3_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(110, 64);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "registered users";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "You have ";
             // 
             // LandingPage
             // 
@@ -727,10 +727,10 @@ namespace Crypyography
             this.Decrypt.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
+            this.Admin.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -782,7 +782,6 @@ namespace Crypyography
         private System.Windows.Forms.Button browseEn;
         private System.Windows.Forms.Label lblDe;
         private System.Windows.Forms.Button browseDe;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label lblUserCount;
         private System.Windows.Forms.Label label13;
@@ -796,5 +795,6 @@ namespace Crypyography
         private System.Windows.Forms.TextBox txtUserDeleteId;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
+        public System.Windows.Forms.TabPage Admin;
     }
 }
