@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace Crypyography
 {
@@ -23,6 +24,10 @@ namespace Crypyography
         SqlCommand cmd;
         SqlDataAdapter adapter;
         DataSet ds;
+        private static Random rand;
+
+
+
 
         public Register()
         {
@@ -64,6 +69,7 @@ namespace Crypyography
         {
             try
             {
+                
                 byte[] encData_byte = new byte[pass.Length];
                 encData_byte = System.Text.Encoding.UTF8.GetBytes(pass);
                 string encodedData = Convert.ToBase64String(encData_byte);
@@ -73,6 +79,21 @@ namespace Crypyography
             {
                 throw new Exception("Error in base64Encode" + ex.Message);
             }
+        }
+
+        public static string generateString()
+        {
+            string aphal = "abcdefghijklmnopqrstuvwxyz0123456789";
+            string ran = "";
+
+            rand = new Random();
+            for(int i=0; i < 3; i++)
+            {
+                int randAlph = rand.Next(36);
+                ran += aphal.ElementAt(randAlph);
+            }
+
+            return ran;
         }
 
         public static string decryptPassword(string encodedData)
@@ -123,6 +144,7 @@ namespace Crypyography
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+
             try
             {
                 
@@ -163,7 +185,8 @@ namespace Crypyography
         {
             try
             {
-                con.Open();
+                if (con.State != ConnectionState.Open)
+                    con.Open();
                 string sql;
                 adapter = new SqlDataAdapter();
                 sql = @"Select * FROM [user]";
@@ -173,7 +196,9 @@ namespace Crypyography
                 adapter.Fill(ds, "Info");
                 dataGridView1.DataSource = ds; 
                 dataGridView1.DataMember = "Info";
-                con.Close();
+                
+                if (con.State == ConnectionState.Open)
+                    con.Close();
             }
             catch (Exception ex)
             {
@@ -186,6 +211,11 @@ namespace Crypyography
         {
             LogIn backToLogIN = new LogIn();
             backToLogIN.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

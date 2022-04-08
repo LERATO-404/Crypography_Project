@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace Crypyography
 {
@@ -19,12 +20,24 @@ namespace Crypyography
         SaveFileDialog saveF;
         StreamWriter swrite;
         Stream s;
-        
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter adapt;
+
         public LandingPage()
         {
             InitializeComponent();
             btnChooseFile.Enabled = false;
             btnProceed.Enabled = false;
+            cboxDeleteEn.Enabled = false;
+            cboxDeleteDe.Enabled = false;
+        }
+
+        private void LandingPage_Load(object sender, EventArgs e)
+        {
+            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
+            C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
+            con = new SqlConnection(conString);
         }
 
 
@@ -205,6 +218,8 @@ namespace Crypyography
             return encryptString;
         }
 
+
+
         /*------------------Methods-------------------*/
         private void button1_Click(object sender, EventArgs e)
         {
@@ -228,7 +243,7 @@ namespace Crypyography
         
         private void btnProceed_Click(object sender, EventArgs e)
         {
-
+            
             if (rbFile.Checked || rbFolder.Checked)
             {
                 if (cboxOption.SelectedIndex == 0)
@@ -283,14 +298,26 @@ namespace Crypyography
 
         private void browseDe_Click(object sender, EventArgs e)
         {
-            
             saveFile();
+            cboxDeleteDe.Enabled = true;
         }
 
         private void browseEn_Click(object sender, EventArgs e)
         {
             
             saveFile();
+            cboxDeleteEn.Enabled = true;
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

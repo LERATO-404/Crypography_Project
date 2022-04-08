@@ -52,6 +52,8 @@ namespace Crypyography
             this.btnDoneEn = new System.Windows.Forms.Button();
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblEn = new System.Windows.Forms.Label();
+            this.browseEn = new System.Windows.Forms.Button();
             this.txtFilePathEn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
@@ -63,6 +65,8 @@ namespace Crypyography
             this.btnCancelDe = new System.Windows.Forms.Button();
             this.btnDoneDe = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblDe = new System.Windows.Forms.Label();
+            this.browseDe = new System.Windows.Forms.Button();
             this.txtFilePathDe = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtRepeateKeyDe = new System.Windows.Forms.TextBox();
@@ -70,10 +74,20 @@ namespace Crypyography
             this.txtKeyDe = new System.Windows.Forms.TextBox();
             this.cboxDeleteDe = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.browseEn = new System.Windows.Forms.Button();
-            this.browseDe = new System.Windows.Forms.Button();
-            this.lblEn = new System.Windows.Forms.Label();
-            this.lblDe = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblUserCount = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtUserDeleteId = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnActivate = new System.Windows.Forms.Button();
+            this.btnSuspend = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,6 +95,9 @@ namespace Crypyography
             this.groupBox1.SuspendLayout();
             this.Decrypt.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -154,10 +171,11 @@ namespace Crypyography
             this.tControl.Controls.Add(this.ChooseFile);
             this.tControl.Controls.Add(this.Encrypt);
             this.tControl.Controls.Add(this.Decrypt);
+            this.tControl.Controls.Add(this.tabPage1);
             this.tControl.Location = new System.Drawing.Point(15, 12);
             this.tControl.Name = "tControl";
             this.tControl.SelectedIndex = 0;
-            this.tControl.Size = new System.Drawing.Size(760, 357);
+            this.tControl.Size = new System.Drawing.Size(760, 426);
             this.tControl.TabIndex = 9;
             // 
             // ChooseFile
@@ -176,7 +194,7 @@ namespace Crypyography
             this.ChooseFile.Location = new System.Drawing.Point(4, 22);
             this.ChooseFile.Name = "ChooseFile";
             this.ChooseFile.Padding = new System.Windows.Forms.Padding(3);
-            this.ChooseFile.Size = new System.Drawing.Size(752, 331);
+            this.ChooseFile.Size = new System.Drawing.Size(752, 400);
             this.ChooseFile.TabIndex = 0;
             this.ChooseFile.Text = "Choose File";
             // 
@@ -292,7 +310,7 @@ namespace Crypyography
             this.Encrypt.Location = new System.Drawing.Point(4, 22);
             this.Encrypt.Name = "Encrypt";
             this.Encrypt.Padding = new System.Windows.Forms.Padding(3);
-            this.Encrypt.Size = new System.Drawing.Size(752, 331);
+            this.Encrypt.Size = new System.Drawing.Size(752, 400);
             this.Encrypt.TabIndex = 1;
             this.Encrypt.Text = "Encrypt";
             // 
@@ -332,6 +350,26 @@ namespace Crypyography
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Encryption";
+            // 
+            // lblEn
+            // 
+            this.lblEn.AutoSize = true;
+            this.lblEn.Location = new System.Drawing.Point(140, 193);
+            this.lblEn.Name = "lblEn";
+            this.lblEn.Size = new System.Drawing.Size(16, 13);
+            this.lblEn.TabIndex = 12;
+            this.lblEn.Text = "...";
+            this.lblEn.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // browseEn
+            // 
+            this.browseEn.Location = new System.Drawing.Point(59, 188);
+            this.browseEn.Name = "browseEn";
+            this.browseEn.Size = new System.Drawing.Size(75, 23);
+            this.browseEn.TabIndex = 11;
+            this.browseEn.Text = "Encrypt";
+            this.browseEn.UseVisualStyleBackColor = true;
+            this.browseEn.Click += new System.EventHandler(this.browseEn_Click);
             // 
             // txtFilePathEn
             // 
@@ -404,7 +442,7 @@ namespace Crypyography
             this.Decrypt.Controls.Add(this.groupBox2);
             this.Decrypt.Location = new System.Drawing.Point(4, 22);
             this.Decrypt.Name = "Decrypt";
-            this.Decrypt.Size = new System.Drawing.Size(752, 331);
+            this.Decrypt.Size = new System.Drawing.Size(752, 400);
             this.Decrypt.TabIndex = 2;
             this.Decrypt.Text = "Decrypt";
             this.Decrypt.Click += new System.EventHandler(this.Decrypt_Click);
@@ -445,6 +483,26 @@ namespace Crypyography
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Decryption";
+            // 
+            // lblDe
+            // 
+            this.lblDe.AutoSize = true;
+            this.lblDe.Location = new System.Drawing.Point(131, 188);
+            this.lblDe.Name = "lblDe";
+            this.lblDe.Size = new System.Drawing.Size(16, 13);
+            this.lblDe.TabIndex = 13;
+            this.lblDe.Text = "...";
+            this.lblDe.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // browseDe
+            // 
+            this.browseDe.Location = new System.Drawing.Point(50, 183);
+            this.browseDe.Name = "browseDe";
+            this.browseDe.Size = new System.Drawing.Size(75, 23);
+            this.browseDe.TabIndex = 12;
+            this.browseDe.Text = "Decrypt";
+            this.browseDe.UseVisualStyleBackColor = true;
+            this.browseDe.Click += new System.EventHandler(this.browseDe_Click);
             // 
             // txtFilePathDe
             // 
@@ -507,45 +565,145 @@ namespace Crypyography
             this.label10.TabIndex = 1;
             this.label10.Text = "Key:";
             // 
-            // browseEn
+            // tabPage1
             // 
-            this.browseEn.Location = new System.Drawing.Point(59, 188);
-            this.browseEn.Name = "browseEn";
-            this.browseEn.Size = new System.Drawing.Size(75, 23);
-            this.browseEn.TabIndex = 11;
-            this.browseEn.Text = "Encrypt";
-            this.browseEn.UseVisualStyleBackColor = true;
-            this.browseEn.Click += new System.EventHandler(this.browseEn_Click);
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnDelete);
+            this.tabPage1.Controls.Add(this.btnSuspend);
+            this.tabPage1.Controls.Add(this.btnActivate);
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(752, 400);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Admin";
             // 
-            // browseDe
+            // label3
             // 
-            this.browseDe.Location = new System.Drawing.Point(50, 183);
-            this.browseDe.Name = "browseDe";
-            this.browseDe.Size = new System.Drawing.Size(75, 23);
-            this.browseDe.TabIndex = 12;
-            this.browseDe.Text = "Decrypt";
-            this.browseDe.UseVisualStyleBackColor = true;
-            this.browseDe.Click += new System.EventHandler(this.browseDe_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "User Management";
             // 
-            // lblEn
+            // label11
             // 
-            this.lblEn.AutoSize = true;
-            this.lblEn.Location = new System.Drawing.Point(140, 193);
-            this.lblEn.Name = "lblEn";
-            this.lblEn.Size = new System.Drawing.Size(16, 13);
-            this.lblEn.TabIndex = 12;
-            this.lblEn.Text = "...";
-            this.lblEn.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "You have ";
             // 
-            // lblDe
+            // lblUserCount
             // 
-            this.lblDe.AutoSize = true;
-            this.lblDe.Location = new System.Drawing.Point(131, 188);
-            this.lblDe.Name = "lblDe";
-            this.lblDe.Size = new System.Drawing.Size(16, 13);
-            this.lblDe.TabIndex = 13;
-            this.lblDe.Text = "...";
-            this.lblDe.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.lblUserCount.AutoSize = true;
+            this.lblUserCount.Location = new System.Drawing.Point(69, 64);
+            this.lblUserCount.Name = "lblUserCount";
+            this.lblUserCount.Size = new System.Drawing.Size(35, 13);
+            this.lblUserCount.TabIndex = 2;
+            this.lblUserCount.Text = "Count";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(110, 64);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "registered users";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 99);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "userId";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtUserDeleteId);
+            this.groupBox5.Controls.Add(this.btnClear);
+            this.groupBox5.Controls.Add(this.btnSearch);
+            this.groupBox5.Controls.Add(this.lblUserCount);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Location = new System.Drawing.Point(186, 15);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(361, 169);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.Location = new System.Drawing.Point(19, 140);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClear.Location = new System.Drawing.Point(100, 140);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
+            // txtUserDeleteId
+            // 
+            this.txtUserDeleteId.Location = new System.Drawing.Point(58, 96);
+            this.txtUserDeleteId.Name = "txtUserDeleteId";
+            this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
+            this.txtUserDeleteId.TabIndex = 7;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(77, 247);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(569, 150);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.Location = new System.Drawing.Point(186, 205);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 8;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnSuspend
+            // 
+            this.btnSuspend.Location = new System.Drawing.Point(267, 205);
+            this.btnSuspend.Name = "btnSuspend";
+            this.btnSuspend.Size = new System.Drawing.Size(75, 23);
+            this.btnSuspend.TabIndex = 9;
+            this.btnSuspend.Text = "Suspend";
+            this.btnSuspend.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(348, 205);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button3_Click);
             // 
             // LandingPage
             // 
@@ -566,6 +724,10 @@ namespace Crypyography
             this.Decrypt.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,5 +779,19 @@ namespace Crypyography
         private System.Windows.Forms.Button browseEn;
         private System.Windows.Forms.Label lblDe;
         private System.Windows.Forms.Button browseDe;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lblUserCount;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSuspend;
+        private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtUserDeleteId;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
