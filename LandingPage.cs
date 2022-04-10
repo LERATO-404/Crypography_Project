@@ -254,7 +254,7 @@ namespace Crypyography
                 if (cboxOption.SelectedIndex == 0)
                 {
                     txtFilePathEn.Text = lblChoosenFile.Text;
-                    txtKeyEn.Text = File.ReadAllText(fileToOpen.FileName);
+                    txtFileEn.Text = File.ReadAllText(fileToOpen.FileName);
                     tControl.SelectedTab = Encrypt;
                     Encrypt.Show();
 
@@ -262,7 +262,7 @@ namespace Crypyography
                 else if (cboxOption.SelectedIndex == 1)
                 {
                     txtFilePathDe.Text = lblChoosenFile.Text;
-                    txtKeyDe.Text = File.ReadAllText(fileToOpen.FileName);
+                    txtFileDe.Text = File.ReadAllText(fileToOpen.FileName);
                     tControl.SelectedTab = Decrypt;
                     Decrypt.Show();
                 }
