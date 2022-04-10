@@ -111,7 +111,7 @@ namespace Crypyography
                 fileToOpen.InitialDirectory = @"C:\";//--"C:\\";
                 fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
                 fileToOpen.FilterIndex = 2;
-                fileToOpen.ShowDialog(); //
+                fileToOpen.ShowDialog(); 
 
                 if (openFileDialog1.FileName != "")
                 {

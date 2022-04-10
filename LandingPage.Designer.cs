@@ -149,6 +149,7 @@ namespace Crypyography
             // 
             // btnProceed
             // 
+            this.btnProceed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProceed.Location = new System.Drawing.Point(533, 293);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(98, 32);
@@ -159,6 +160,7 @@ namespace Crypyography
             // 
             // btnCancel
             // 
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Location = new System.Drawing.Point(637, 293);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 32);
@@ -316,6 +318,7 @@ namespace Crypyography
             // 
             // btnDoneEn
             // 
+            this.btnDoneEn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDoneEn.Location = new System.Drawing.Point(544, 293);
             this.btnDoneEn.Name = "btnDoneEn";
             this.btnDoneEn.Size = new System.Drawing.Size(98, 32);
@@ -326,6 +329,7 @@ namespace Crypyography
             // 
             // btnCancelEn
             // 
+            this.btnCancelEn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelEn.Location = new System.Drawing.Point(648, 293);
             this.btnCancelEn.Name = "btnCancelEn";
             this.btnCancelEn.Size = new System.Drawing.Size(98, 32);
@@ -363,6 +367,7 @@ namespace Crypyography
             // 
             // browseEn
             // 
+            this.browseEn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.browseEn.Location = new System.Drawing.Point(59, 188);
             this.browseEn.Name = "browseEn";
             this.browseEn.Size = new System.Drawing.Size(75, 23);
@@ -449,6 +454,7 @@ namespace Crypyography
             // 
             // btnCancelDe
             // 
+            this.btnCancelDe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelDe.Location = new System.Drawing.Point(645, 285);
             this.btnCancelDe.Name = "btnCancelDe";
             this.btnCancelDe.Size = new System.Drawing.Size(98, 32);
@@ -458,6 +464,7 @@ namespace Crypyography
             // 
             // btnDoneDe
             // 
+            this.btnDoneDe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDoneDe.Location = new System.Drawing.Point(541, 285);
             this.btnDoneDe.Name = "btnDoneDe";
             this.btnDoneDe.Size = new System.Drawing.Size(98, 32);
@@ -496,6 +503,7 @@ namespace Crypyography
             // 
             // browseDe
             // 
+            this.browseDe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.browseDe.Location = new System.Drawing.Point(50, 183);
             this.browseDe.Name = "browseDe";
             this.browseDe.Size = new System.Drawing.Size(75, 23);
@@ -581,6 +589,7 @@ namespace Crypyography
             // 
             // btnDelete
             // 
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Location = new System.Drawing.Point(348, 205);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -591,6 +600,7 @@ namespace Crypyography
             // 
             // btnSuspend
             // 
+            this.btnSuspend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSuspend.Location = new System.Drawing.Point(267, 205);
             this.btnSuspend.Name = "btnSuspend";
             this.btnSuspend.Size = new System.Drawing.Size(75, 23);
@@ -600,6 +610,7 @@ namespace Crypyography
             // 
             // btnActivate
             // 
+            this.btnActivate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActivate.Location = new System.Drawing.Point(186, 205);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(75, 23);
@@ -642,6 +653,7 @@ namespace Crypyography
             // btnClear
             // 
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClear.Location = new System.Drawing.Point(100, 140);
             this.btnClear.Name = "btnClear";
@@ -653,6 +665,7 @@ namespace Crypyography
             // 
             // btnSearch
             // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Location = new System.Drawing.Point(19, 140);
             this.btnSearch.Name = "btnSearch";

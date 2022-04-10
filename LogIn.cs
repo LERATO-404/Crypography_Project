@@ -93,9 +93,9 @@ namespace Crypyography
                             if (txtUserNameEmail.Text == "admin" && decryptPassword(encryptPass) == "admin")
                             {
                                 //landingP.Admin.Enabled = true;
-                                landingP.tControl.TabPages.Add(landingP.Admin);
+                                landingP.tControl.TabPages.Add(landingP.Admin); // show admin tab when the admin log in
                             }
-                            landingP.Show();
+                            landingP.Show(); //show landing page
 
                         }
                         else
@@ -149,6 +149,12 @@ namespace Crypyography
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblSignIn_Click(object sender, EventArgs e)
+        {
+            Register signIn = new Register();
+            signIn.Show();
         }
     }
 }

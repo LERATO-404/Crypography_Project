@@ -147,33 +147,40 @@ namespace Crypyography
 
             try
             {
-                
-                if (con.State != ConnectionState.Open)
-                    con.Open();
-                /*
-                String sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES('" + txtFirstName.Text + "'," +
-                "'" + txtLastName.Text + "'," +
-                "'" + txtUserName.Text + "'," +
-                "'" + txtEmail.Text + "'," +
-                "'" + txtPassword.Text + "')";
-                */
-                string sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES(@firstName,@lastName,@userName,@email,@password)";
-                string passW = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
-                cmd = new SqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
-                cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
-                cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@password",passW);
+                if (txtFirstName.Text != "" || txtLastName.Text != "" || txtUserName.Text != "" || txtEmail.Text != "")
+                {
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+                    /*
+                    String sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES('" + txtFirstName.Text + "'," +
+                    "'" + txtLastName.Text + "'," +
+                    "'" + txtUserName.Text + "'," +
+                    "'" + txtEmail.Text + "'," +
+                    "'" + txtPassword.Text + "')";
+                    */
+                    string sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES(@firstName,@lastName,@userName,@email,@password)";
+                    string passW = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
+                    cmd = new SqlCommand(sql, con);
 
-                cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                    cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@password", passW);
 
-                MessageBox.Show("Record inserted!");
-                clearAll();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record inserted!", "New user inserted",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    clearAll();
 
-                if (con.State == ConnectionState.Open)
-                   con.Close();   
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please fill all the fields!..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                 
             }
             catch (Exception ex)
             {
@@ -209,11 +216,26 @@ namespace Crypyography
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
             LogIn backToLogIN = new LogIn();
             backToLogIN.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
