@@ -32,7 +32,8 @@ namespace Crypyography
             btnProceed.Enabled = false;
             cboxDeleteEn.Enabled = false;
             cboxDeleteDe.Enabled = false;
-            Admin.Enabled = false;
+            //Admin.Enabled = false;
+            tControl.TabPages.Remove(Admin);
         }
 
         private void LandingPage_Load_1(object sender, EventArgs e)

@@ -92,7 +92,8 @@ namespace Crypyography
                             LandingPage landingP = new LandingPage();
                             if (txtUserNameEmail.Text == "admin" && decryptPassword(encryptPass) == "admin")
                             {
-                                landingP.Admin.Enabled = true;
+                                //landingP.Admin.Enabled = true;
+                                landingP.tControl.TabPages.Add(landingP.Admin);
                             }
                             landingP.Show();
 

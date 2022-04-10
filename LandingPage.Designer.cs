@@ -745,7 +745,6 @@ namespace Crypyography
         private System.Windows.Forms.ComboBox cboxOption;
         private System.Windows.Forms.Button btnProceed;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TabControl tControl;
         private System.Windows.Forms.TabPage ChooseFile;
         private System.Windows.Forms.TabPage Encrypt;
         private System.Windows.Forms.Button btnChooseFile;
@@ -796,5 +795,6 @@ namespace Crypyography
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.TabPage Admin;
+        public System.Windows.Forms.TabControl tControl;
     }
 }
