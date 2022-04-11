@@ -49,31 +49,35 @@ namespace Crypyography
             this.lblChoosenFile = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Encrypt = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtFileEn = new System.Windows.Forms.TextBox();
+            this.txtFilePathEn = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnDoneEn = new System.Windows.Forms.Button();
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblEn = new System.Windows.Forms.Label();
             this.browseEn = new System.Windows.Forms.Button();
-            this.txtFilePathEn = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtKeyEn = new System.Windows.Forms.TextBox();
             this.cboxDeleteEn = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Decrypt = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblDe = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.browseDe = new System.Windows.Forms.Button();
+            this.cboxDeleteDe = new System.Windows.Forms.CheckBox();
+            this.txtKeyDe = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtRepeateKeyDe = new System.Windows.Forms.TextBox();
             this.btnCancelDe = new System.Windows.Forms.Button();
             this.btnDoneDe = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblDe = new System.Windows.Forms.Label();
-            this.browseDe = new System.Windows.Forms.Button();
+            this.txtFileDe = new System.Windows.Forms.TextBox();
             this.txtFilePathDe = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtRepeateKeyDe = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtKeyDe = new System.Windows.Forms.TextBox();
-            this.cboxDeleteDe = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.Admin = new System.Windows.Forms.TabPage();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSuspend = new System.Windows.Forms.Button();
@@ -88,22 +92,18 @@ namespace Crypyography
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtFileDe = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtFileEn = new System.Windows.Forms.TextBox();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Encrypt.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Decrypt.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.Admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -323,6 +323,45 @@ namespace Crypyography
             this.Encrypt.TabIndex = 1;
             this.Encrypt.Text = "Encrypt";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtFileEn);
+            this.groupBox6.Controls.Add(this.txtFilePathEn);
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Location = new System.Drawing.Point(21, 15);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(366, 378);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Encryption";
+            // 
+            // txtFileEn
+            // 
+            this.txtFileEn.Location = new System.Drawing.Point(21, 96);
+            this.txtFileEn.Multiline = true;
+            this.txtFileEn.Name = "txtFileEn";
+            this.txtFileEn.Size = new System.Drawing.Size(317, 276);
+            this.txtFileEn.TabIndex = 14;
+            // 
+            // txtFilePathEn
+            // 
+            this.txtFilePathEn.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFilePathEn.Location = new System.Drawing.Point(18, 48);
+            this.txtFilePathEn.Multiline = true;
+            this.txtFilePathEn.Name = "txtFilePathEn";
+            this.txtFilePathEn.Size = new System.Drawing.Size(317, 32);
+            this.txtFilePathEn.TabIndex = 0;
+            this.txtFilePathEn.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "File:";
+            // 
             // btnDoneEn
             // 
             this.btnDoneEn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -380,25 +419,6 @@ namespace Crypyography
             this.browseEn.Text = "Encrypt";
             this.browseEn.UseVisualStyleBackColor = true;
             this.browseEn.Click += new System.EventHandler(this.browseEn_Click);
-            // 
-            // txtFilePathEn
-            // 
-            this.txtFilePathEn.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFilePathEn.Location = new System.Drawing.Point(18, 48);
-            this.txtFilePathEn.Multiline = true;
-            this.txtFilePathEn.Name = "txtFilePathEn";
-            this.txtFilePathEn.Size = new System.Drawing.Size(317, 32);
-            this.txtFilePathEn.TabIndex = 0;
-            this.txtFilePathEn.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 32);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(26, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "File:";
             // 
             // txtRepeatKeyEn
             // 
@@ -458,6 +478,85 @@ namespace Crypyography
             this.Decrypt.Text = "Decrypt";
             this.Decrypt.Click += new System.EventHandler(this.Decrypt_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblDe);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.browseDe);
+            this.groupBox4.Controls.Add(this.cboxDeleteDe);
+            this.groupBox4.Controls.Add(this.txtKeyDe);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.txtRepeateKeyDe);
+            this.groupBox4.Location = new System.Drawing.Point(378, 15);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(350, 200);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Decryption Key";
+            // 
+            // lblDe
+            // 
+            this.lblDe.AutoSize = true;
+            this.lblDe.Location = new System.Drawing.Point(107, 137);
+            this.lblDe.Name = "lblDe";
+            this.lblDe.Size = new System.Drawing.Size(16, 13);
+            this.lblDe.TabIndex = 13;
+            this.lblDe.Text = "...";
+            this.lblDe.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 32);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Enter Key:";
+            // 
+            // browseDe
+            // 
+            this.browseDe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.browseDe.Location = new System.Drawing.Point(26, 132);
+            this.browseDe.Name = "browseDe";
+            this.browseDe.Size = new System.Drawing.Size(75, 23);
+            this.browseDe.TabIndex = 12;
+            this.browseDe.Text = "Decrypt";
+            this.browseDe.UseVisualStyleBackColor = true;
+            this.browseDe.Click += new System.EventHandler(this.browseDe_Click);
+            // 
+            // cboxDeleteDe
+            // 
+            this.cboxDeleteDe.AutoSize = true;
+            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 172);
+            this.cboxDeleteDe.Name = "cboxDeleteDe";
+            this.cboxDeleteDe.Size = new System.Drawing.Size(185, 17);
+            this.cboxDeleteDe.TabIndex = 0;
+            this.cboxDeleteDe.Text = "Delete original file after decryption";
+            this.cboxDeleteDe.UseVisualStyleBackColor = true;
+            // 
+            // txtKeyDe
+            // 
+            this.txtKeyDe.Location = new System.Drawing.Point(26, 48);
+            this.txtKeyDe.Name = "txtKeyDe";
+            this.txtKeyDe.Size = new System.Drawing.Size(240, 20);
+            this.txtKeyDe.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Repeat Key:";
+            // 
+            // txtRepeateKeyDe
+            // 
+            this.txtRepeateKeyDe.Location = new System.Drawing.Point(26, 97);
+            this.txtRepeateKeyDe.Name = "txtRepeateKeyDe";
+            this.txtRepeateKeyDe.Size = new System.Drawing.Size(240, 20);
+            this.txtRepeateKeyDe.TabIndex = 4;
+            // 
             // btnCancelDe
             // 
             this.btnCancelDe.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -491,26 +590,13 @@ namespace Crypyography
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Decryption";
             // 
-            // lblDe
+            // txtFileDe
             // 
-            this.lblDe.AutoSize = true;
-            this.lblDe.Location = new System.Drawing.Point(107, 137);
-            this.lblDe.Name = "lblDe";
-            this.lblDe.Size = new System.Drawing.Size(16, 13);
-            this.lblDe.TabIndex = 13;
-            this.lblDe.Text = "...";
-            this.lblDe.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
-            // browseDe
-            // 
-            this.browseDe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.browseDe.Location = new System.Drawing.Point(26, 132);
-            this.browseDe.Name = "browseDe";
-            this.browseDe.Size = new System.Drawing.Size(75, 23);
-            this.browseDe.TabIndex = 12;
-            this.browseDe.Text = "Decrypt";
-            this.browseDe.UseVisualStyleBackColor = true;
-            this.browseDe.Click += new System.EventHandler(this.browseDe_Click);
+            this.txtFileDe.Location = new System.Drawing.Point(21, 96);
+            this.txtFileDe.Multiline = true;
+            this.txtFileDe.Name = "txtFileDe";
+            this.txtFileDe.Size = new System.Drawing.Size(315, 257);
+            this.txtFileDe.TabIndex = 11;
             // 
             // txtFilePathDe
             // 
@@ -530,48 +616,6 @@ namespace Crypyography
             this.label8.Size = new System.Drawing.Size(26, 13);
             this.label8.TabIndex = 5;
             this.label8.Text = "File:";
-            // 
-            // txtRepeateKeyDe
-            // 
-            this.txtRepeateKeyDe.Location = new System.Drawing.Point(26, 97);
-            this.txtRepeateKeyDe.Name = "txtRepeateKeyDe";
-            this.txtRepeateKeyDe.Size = new System.Drawing.Size(240, 20);
-            this.txtRepeateKeyDe.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 13);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Repeat Key:";
-            // 
-            // txtKeyDe
-            // 
-            this.txtKeyDe.Location = new System.Drawing.Point(26, 48);
-            this.txtKeyDe.Name = "txtKeyDe";
-            this.txtKeyDe.Size = new System.Drawing.Size(240, 20);
-            this.txtKeyDe.TabIndex = 2;
-            // 
-            // cboxDeleteDe
-            // 
-            this.cboxDeleteDe.AutoSize = true;
-            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 172);
-            this.cboxDeleteDe.Name = "cboxDeleteDe";
-            this.cboxDeleteDe.Size = new System.Drawing.Size(185, 17);
-            this.cboxDeleteDe.TabIndex = 0;
-            this.cboxDeleteDe.Text = "Delete original file after decryption";
-            this.cboxDeleteDe.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(23, 32);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Enter Key:";
             // 
             // Admin
             // 
@@ -645,7 +689,7 @@ namespace Crypyography
             // 
             // txtUserDeleteId
             // 
-            this.txtUserDeleteId.Location = new System.Drawing.Point(58, 96);
+            this.txtUserDeleteId.Location = new System.Drawing.Point(68, 89);
             this.txtUserDeleteId.Name = "txtUserDeleteId";
             this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
             this.txtUserDeleteId.TabIndex = 7;
@@ -655,7 +699,7 @@ namespace Crypyography
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClear.Location = new System.Drawing.Point(100, 140);
+            this.btnClear.Location = new System.Drawing.Point(280, 140);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 8;
@@ -667,27 +711,27 @@ namespace Crypyography
             // 
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearch.Location = new System.Drawing.Point(19, 140);
+            this.btnSearch.Location = new System.Drawing.Point(172, 140);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(102, 23);
             this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "Show all users";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblUserCount
             // 
             this.lblUserCount.AutoSize = true;
-            this.lblUserCount.Location = new System.Drawing.Point(69, 64);
+            this.lblUserCount.Location = new System.Drawing.Point(84, 64);
             this.lblUserCount.Name = "lblUserCount";
-            this.lblUserCount.Size = new System.Drawing.Size(35, 13);
+            this.lblUserCount.Size = new System.Drawing.Size(12, 13);
             this.lblUserCount.TabIndex = 2;
-            this.lblUserCount.Text = "Count";
+            this.lblUserCount.Text = "x";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 99);
+            this.label13.Location = new System.Drawing.Point(26, 92);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 4;
@@ -696,7 +740,7 @@ namespace Crypyography
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 27);
+            this.label3.Location = new System.Drawing.Point(22, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 0;
@@ -705,7 +749,7 @@ namespace Crypyography
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(110, 64);
+            this.label12.Location = new System.Drawing.Point(102, 64);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 13);
             this.label12.TabIndex = 3;
@@ -714,55 +758,11 @@ namespace Crypyography
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 64);
+            this.label11.Location = new System.Drawing.Point(22, 64);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 1;
             this.label11.Text = "You have ";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.lblDe);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.browseDe);
-            this.groupBox4.Controls.Add(this.cboxDeleteDe);
-            this.groupBox4.Controls.Add(this.txtKeyDe);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.txtRepeateKeyDe);
-            this.groupBox4.Location = new System.Drawing.Point(378, 15);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(350, 200);
-            this.groupBox4.TabIndex = 10;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Decryption Key";
-            // 
-            // txtFileDe
-            // 
-            this.txtFileDe.Location = new System.Drawing.Point(21, 96);
-            this.txtFileDe.Multiline = true;
-            this.txtFileDe.Name = "txtFileDe";
-            this.txtFileDe.Size = new System.Drawing.Size(315, 257);
-            this.txtFileDe.TabIndex = 11;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.txtFileEn);
-            this.groupBox6.Controls.Add(this.txtFilePathEn);
-            this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Location = new System.Drawing.Point(21, 15);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(366, 378);
-            this.groupBox6.TabIndex = 13;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Encryption";
-            // 
-            // txtFileEn
-            // 
-            this.txtFileEn.Location = new System.Drawing.Point(21, 96);
-            this.txtFileEn.Multiline = true;
-            this.txtFileEn.Name = "txtFileEn";
-            this.txtFileEn.Size = new System.Drawing.Size(317, 276);
-            this.txtFileEn.TabIndex = 14;
             // 
             // LandingPage
             // 
@@ -779,19 +779,19 @@ namespace Crypyography
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.Encrypt.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.Decrypt.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.Admin.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -24,6 +24,7 @@ namespace Crypyography
         SqlCommand cmd;
         SqlDataAdapter adapt;
         DataSet ds;
+        
 
         public LandingPage()
         {
@@ -32,7 +33,7 @@ namespace Crypyography
             btnProceed.Enabled = false;
             cboxDeleteEn.Enabled = false;
             cboxDeleteDe.Enabled = false;
-            //Admin.Enabled = false;
+            lblUserCount.Text = "0";
             tControl.TabPages.Remove(Admin);
         }
 
@@ -42,6 +43,8 @@ namespace Crypyography
             C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
             con = new SqlConnection(conString);
             
+
+
         }
 
       
@@ -223,7 +226,28 @@ namespace Crypyography
             return encryptString;
         }
 
+        public int userCount()
+        {
+            int usersAvailable = 0;
+            string sql = @"SELECT COUNT(*) FROM [user]";
 
+            try
+            {
+                
+                using (cmd = new SqlCommand(sql, con))
+                {
+                    
+                    usersAvailable = (int)cmd.ExecuteScalar();
+                }
+                return usersAvailable;
+                
+            }
+            catch (Exception ex)
+            {
+                
+                return 0;
+            }
+        }
 
         /*------------------Methods-------------------*/
         private void button1_Click(object sender, EventArgs e)
@@ -362,7 +386,7 @@ namespace Crypyography
                 adapt.Fill(ds, "Info");
                 dataGridViewDelete.DataSource = ds;
                 dataGridViewDelete.DataMember = "Info";
-
+                lblUserCount.Text = userCount().ToString();
                 if (con.State == ConnectionState.Open)
                     con.Close();
             }
