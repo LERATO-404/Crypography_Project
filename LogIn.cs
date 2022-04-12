@@ -104,6 +104,7 @@ namespace Crypyography
                         }
                     }
                     myReader.Close();
+                    this.Hide();
 
                 }
                 else if (txtUserNameEmail.Text == "" && txtPasswordLog.Text == "")
@@ -155,6 +156,7 @@ namespace Crypyography
         {
             Register signIn = new Register();
             signIn.Show();
+            this.Close();
         }
     }
 }

@@ -400,5 +400,10 @@ namespace Crypyography
         {
             txtUserDeleteId.Clear();
         }
+
+        private void lblLogOff_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

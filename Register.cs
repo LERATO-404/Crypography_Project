@@ -233,6 +233,8 @@ namespace Crypyography
         {
             LogIn backToLogIN = new LogIn();
             backToLogIN.Show();
+            this.Hide();
+           
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

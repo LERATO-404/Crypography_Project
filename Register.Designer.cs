@@ -30,33 +30,33 @@ namespace Crypyography
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblSignIn = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRegister = new System.Windows.Forms.Button();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblSignIn = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -71,6 +71,38 @@ namespace Crypyography
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblSignIn);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Location = new System.Drawing.Point(24, 362);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(288, 58);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            // 
+            // lblSignIn
+            // 
+            this.lblSignIn.AutoSize = true;
+            this.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSignIn.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblSignIn.Location = new System.Drawing.Point(155, 26);
+            this.lblSignIn.Name = "lblSignIn";
+            this.lblSignIn.Size = new System.Drawing.Size(40, 13);
+            this.lblSignIn.TabIndex = 20;
+            this.lblSignIn.Text = "Sign In";
+            this.lblSignIn.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(63, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(96, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Have an account?";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // btnDisplay
             // 
@@ -113,53 +145,14 @@ namespace Crypyography
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             // 
-            // txtEmail
+            // label9
             // 
-            this.txtEmail.Location = new System.Drawing.Point(51, 140);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(170, 20);
-            this.txtEmail.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Email:";
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Location = new System.Drawing.Point(50, 57);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(172, 20);
-            this.txtFirstName.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Firstname:";
-            // 
-            // txtLastName
-            // 
-            this.txtLastName.Location = new System.Drawing.Point(51, 96);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(171, 20);
-            this.txtLastName.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Lastname:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(80, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(114, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Register Your Account";
             // 
             // txtConfirmPassword
             // 
@@ -167,6 +160,24 @@ namespace Crypyography
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(172, 20);
             this.txtConfirmPassword.TabIndex = 6;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(51, 140);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(170, 20);
+            this.txtEmail.TabIndex = 3;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegister.Location = new System.Drawing.Point(50, 295);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(172, 32);
+            this.btnRegister.TabIndex = 9;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // label5
             // 
@@ -176,6 +187,15 @@ namespace Crypyography
             this.label5.Size = new System.Drawing.Size(94, 13);
             this.label5.TabIndex = 13;
             this.label5.Text = "Confirm Password:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Email:";
             // 
             // txtUserName
             // 
@@ -194,12 +214,28 @@ namespace Crypyography
             this.label6.Text = "Username:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Location = new System.Drawing.Point(50, 57);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(172, 20);
+            this.txtFirstName.TabIndex = 1;
+            // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(51, 225);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(170, 20);
             this.txtPassword.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Firstname:";
             // 
             // label2
             // 
@@ -210,24 +246,29 @@ namespace Crypyography
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
-            // btnRegister
+            // txtLastName
             // 
-            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegister.Location = new System.Drawing.Point(50, 295);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(172, 32);
-            this.btnRegister.TabIndex = 9;
-            this.btnRegister.Text = "Register";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.txtLastName.Location = new System.Drawing.Point(51, 96);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(171, 20);
+            this.txtLastName.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(50, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Lastname:";
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Menu;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(25, 25);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(68, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(906, 10);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(863, 11);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // label7
@@ -250,47 +291,6 @@ namespace Crypyography
             this.label8.Text = "Encrypt, Decrypt file with CryptographyApp";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(80, 16);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(114, 13);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Register Your Account";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lblSignIn);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(24, 362);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(288, 58);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(63, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 13);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "Have an account?";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // lblSignIn
-            // 
-            this.lblSignIn.AutoSize = true;
-            this.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSignIn.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblSignIn.Location = new System.Drawing.Point(155, 26);
-            this.lblSignIn.Name = "lblSignIn";
-            this.lblSignIn.Size = new System.Drawing.Size(40, 13);
-            this.lblSignIn.TabIndex = 20;
-            this.lblSignIn.Text = "Sign In";
-            this.lblSignIn.Click += new System.EventHandler(this.label11_Click);
-            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,11 +304,11 @@ namespace Crypyography
             this.Text = "Register";
             this.Load += new System.EventHandler(this.Register_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

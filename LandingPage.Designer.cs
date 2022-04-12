@@ -70,8 +70,6 @@ namespace Crypyography
             this.browseDe = new System.Windows.Forms.Button();
             this.cboxDeleteDe = new System.Windows.Forms.CheckBox();
             this.txtKeyDe = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtRepeateKeyDe = new System.Windows.Forms.TextBox();
             this.btnCancelDe = new System.Windows.Forms.Button();
             this.btnDoneDe = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -92,6 +90,7 @@ namespace Crypyography
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblLogOff = new System.Windows.Forms.Label();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -189,6 +188,7 @@ namespace Crypyography
             // ChooseFile
             // 
             this.ChooseFile.BackColor = System.Drawing.SystemColors.Control;
+            this.ChooseFile.Controls.Add(this.lblLogOff);
             this.ChooseFile.Controls.Add(this.groupBox3);
             this.ChooseFile.Controls.Add(this.cboxOption);
             this.ChooseFile.Controls.Add(this.btnChooseFile);
@@ -485,11 +485,9 @@ namespace Crypyography
             this.groupBox4.Controls.Add(this.browseDe);
             this.groupBox4.Controls.Add(this.cboxDeleteDe);
             this.groupBox4.Controls.Add(this.txtKeyDe);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.txtRepeateKeyDe);
             this.groupBox4.Location = new System.Drawing.Point(378, 15);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(350, 200);
+            this.groupBox4.Size = new System.Drawing.Size(350, 154);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Decryption Key";
@@ -497,7 +495,7 @@ namespace Crypyography
             // lblDe
             // 
             this.lblDe.AutoSize = true;
-            this.lblDe.Location = new System.Drawing.Point(107, 137);
+            this.lblDe.Location = new System.Drawing.Point(107, 88);
             this.lblDe.Name = "lblDe";
             this.lblDe.Size = new System.Drawing.Size(16, 13);
             this.lblDe.TabIndex = 13;
@@ -516,7 +514,7 @@ namespace Crypyography
             // browseDe
             // 
             this.browseDe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.browseDe.Location = new System.Drawing.Point(26, 132);
+            this.browseDe.Location = new System.Drawing.Point(26, 83);
             this.browseDe.Name = "browseDe";
             this.browseDe.Size = new System.Drawing.Size(75, 23);
             this.browseDe.TabIndex = 12;
@@ -527,7 +525,7 @@ namespace Crypyography
             // cboxDeleteDe
             // 
             this.cboxDeleteDe.AutoSize = true;
-            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 172);
+            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 123);
             this.cboxDeleteDe.Name = "cboxDeleteDe";
             this.cboxDeleteDe.Size = new System.Drawing.Size(185, 17);
             this.cboxDeleteDe.TabIndex = 0;
@@ -540,22 +538,6 @@ namespace Crypyography
             this.txtKeyDe.Name = "txtKeyDe";
             this.txtKeyDe.Size = new System.Drawing.Size(240, 20);
             this.txtKeyDe.TabIndex = 2;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 13);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Repeat Key:";
-            // 
-            // txtRepeateKeyDe
-            // 
-            this.txtRepeateKeyDe.Location = new System.Drawing.Point(26, 97);
-            this.txtRepeateKeyDe.Name = "txtRepeateKeyDe";
-            this.txtRepeateKeyDe.Size = new System.Drawing.Size(240, 20);
-            this.txtRepeateKeyDe.TabIndex = 4;
             // 
             // btnCancelDe
             // 
@@ -666,9 +648,9 @@ namespace Crypyography
             // dataGridViewDelete
             // 
             this.dataGridViewDelete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDelete.Location = new System.Drawing.Point(13, 250);
+            this.dataGridViewDelete.Location = new System.Drawing.Point(13, 247);
             this.dataGridViewDelete.Name = "dataGridViewDelete";
-            this.dataGridViewDelete.Size = new System.Drawing.Size(569, 150);
+            this.dataGridViewDelete.Size = new System.Drawing.Size(647, 153);
             this.dataGridViewDelete.TabIndex = 7;
             // 
             // groupBox5
@@ -764,6 +746,18 @@ namespace Crypyography
             this.label11.TabIndex = 1;
             this.label11.Text = "You have ";
             // 
+            // lblLogOff
+            // 
+            this.lblLogOff.AutoSize = true;
+            this.lblLogOff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblLogOff.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblLogOff.Location = new System.Drawing.Point(685, 9);
+            this.lblLogOff.Name = "lblLogOff";
+            this.lblLogOff.Size = new System.Drawing.Size(40, 13);
+            this.lblLogOff.TabIndex = 13;
+            this.lblLogOff.Text = "Log off";
+            this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
+            // 
             // LandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,8 +819,6 @@ namespace Crypyography
         private System.Windows.Forms.Button btnDoneDe;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtRepeateKeyDe;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtKeyDe;
         private System.Windows.Forms.CheckBox cboxDeleteDe;
         private System.Windows.Forms.Label label10;
@@ -861,5 +853,6 @@ namespace Crypyography
         private System.Windows.Forms.TextBox txtFileDe;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtFileEn;
+        private System.Windows.Forms.Label lblLogOff;
     }
 }
