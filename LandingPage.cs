@@ -177,8 +177,8 @@ namespace Crypyography
 
             if (saveF.ShowDialog() == DialogResult.OK)
             {
-                string encText = txtKeyEn.Text;
-                string decText = txtKeyDe.Text;
+                string encText = txtFileEn.Text;
+                string decText = txtFileDe.Text;
                 s = File.Open(saveF.FileName, FileMode.CreateNew);
                 using (swrite = new StreamWriter(s))
                 {
@@ -230,7 +230,6 @@ namespace Crypyography
         {
             int usersAvailable = 0;
             string sql = @"SELECT COUNT(*) FROM [user]";
-
             try
             {
                 
@@ -244,7 +243,6 @@ namespace Crypyography
             }
             catch (Exception ex)
             {
-                
                 return 0;
             }
         }
@@ -333,10 +331,20 @@ namespace Crypyography
 
         private void browseEn_Click(object sender, EventArgs e)
         {
-            
-            saveFile();
-            cboxDeleteEn.Enabled = true;
-
+            Register validateKey = new Register();
+            bool isKeySame = Register.validatePassword(txtKeyEn.Text , txtRepeatKeyEn.Text);
+            try
+            {
+                if (txtKeyEn.Text != "" && txtRepeatKeyEn.Text != "" && (isKeySame == true))
+                {
+                    saveFile();
+                    cboxDeleteEn.Enabled = true;
+                }
+            }
+            catch(IOException ioEx)
+            {
+                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -346,7 +354,7 @@ namespace Crypyography
                 con.Open();
                 adapt = new SqlDataAdapter();
                 string sqlDelete = "DELETE [user] WHERE Id='"+txtUserDeleteId.Text+"'";
-                string sqlDeleteAll = "DELETE * FROM [user]";
+                //string sqlDeleteAll = "DELETE * FROM [user]";
                 cmd = new SqlCommand();
 
                 adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
@@ -403,7 +411,19 @@ namespace Crypyography
 
         private void lblLogOff_Click(object sender, EventArgs e)
         {
+            LogIn toLogOff = new LogIn();
+            toLogOff.Show();
             this.Close();
+        }
+
+        private void lblUserCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFileEn_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

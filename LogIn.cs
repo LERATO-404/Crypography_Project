@@ -96,6 +96,8 @@ namespace Crypyography
                                 landingP.tControl.TabPages.Add(landingP.Admin); // show admin tab when the admin log in
                             }
                             landingP.Show(); //show landing page
+                            myReader.Close();
+                             this.Hide();
 
                         }
                         else
@@ -103,13 +105,6 @@ namespace Crypyography
                             MessageBox.Show("Data not found", "Information");
                         }
                     }
-                    myReader.Close();
-                    this.Hide();
-
-                }
-                else if (txtUserNameEmail.Text == "" && txtPasswordLog.Text == "")
-                {
-                    MessageBox.Show("Username and Password is empty", "Information");
                 }
                 else
                 {

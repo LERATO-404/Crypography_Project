@@ -39,6 +39,7 @@ namespace Crypyography
             this.btnCancel = new System.Windows.Forms.Button();
             this.tControl = new System.Windows.Forms.TabControl();
             this.ChooseFile = new System.Windows.Forms.TabPage();
+            this.lblLogOff = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rbTextFile = new System.Windows.Forms.RadioButton();
             this.rbPhoto = new System.Windows.Forms.RadioButton();
@@ -89,8 +90,6 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblLogOff = new System.Windows.Forms.Label();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -205,6 +204,18 @@ namespace Crypyography
             this.ChooseFile.Size = new System.Drawing.Size(744, 402);
             this.ChooseFile.TabIndex = 0;
             this.ChooseFile.Text = "Choose File";
+            // 
+            // lblLogOff
+            // 
+            this.lblLogOff.AutoSize = true;
+            this.lblLogOff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblLogOff.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblLogOff.Location = new System.Drawing.Point(685, 9);
+            this.lblLogOff.Name = "lblLogOff";
+            this.lblLogOff.Size = new System.Drawing.Size(40, 13);
+            this.lblLogOff.TabIndex = 13;
+            this.lblLogOff.Text = "Log off";
+            this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
             // 
             // groupBox3
             // 
@@ -342,6 +353,7 @@ namespace Crypyography
             this.txtFileEn.Name = "txtFileEn";
             this.txtFileEn.Size = new System.Drawing.Size(317, 276);
             this.txtFileEn.TabIndex = 14;
+            this.txtFileEn.TextChanged += new System.EventHandler(this.txtFileEn_TextChanged);
             // 
             // txtFilePathEn
             // 
@@ -662,7 +674,6 @@ namespace Crypyography
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Location = new System.Drawing.Point(13, 29);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(361, 169);
@@ -671,9 +682,9 @@ namespace Crypyography
             // 
             // txtUserDeleteId
             // 
-            this.txtUserDeleteId.Location = new System.Drawing.Point(68, 89);
+            this.txtUserDeleteId.Location = new System.Drawing.Point(68, 73);
             this.txtUserDeleteId.Name = "txtUserDeleteId";
-            this.txtUserDeleteId.Size = new System.Drawing.Size(100, 20);
+            this.txtUserDeleteId.Size = new System.Drawing.Size(109, 20);
             this.txtUserDeleteId.TabIndex = 7;
             // 
             // btnClear
@@ -704,16 +715,17 @@ namespace Crypyography
             // lblUserCount
             // 
             this.lblUserCount.AutoSize = true;
-            this.lblUserCount.Location = new System.Drawing.Point(84, 64);
+            this.lblUserCount.Location = new System.Drawing.Point(117, 51);
             this.lblUserCount.Name = "lblUserCount";
             this.lblUserCount.Size = new System.Drawing.Size(12, 13);
             this.lblUserCount.TabIndex = 2;
             this.lblUserCount.Text = "x";
+            this.lblUserCount.Click += new System.EventHandler(this.lblUserCount_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(26, 92);
+            this.label13.Location = new System.Drawing.Point(26, 76);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 4;
@@ -731,32 +743,11 @@ namespace Crypyography
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(102, 64);
+            this.label12.Location = new System.Drawing.Point(22, 51);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 13);
+            this.label12.Size = new System.Drawing.Size(89, 13);
             this.label12.TabIndex = 3;
-            this.label12.Text = "registered users";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(22, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "You have ";
-            // 
-            // lblLogOff
-            // 
-            this.lblLogOff.AutoSize = true;
-            this.lblLogOff.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblLogOff.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblLogOff.Location = new System.Drawing.Point(685, 9);
-            this.lblLogOff.Name = "lblLogOff";
-            this.lblLogOff.Size = new System.Drawing.Size(40, 13);
-            this.lblLogOff.TabIndex = 13;
-            this.lblLogOff.Text = "Log off";
-            this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
+            this.label12.Text = "Registered users:";
             // 
             // LandingPage
             // 
@@ -839,7 +830,6 @@ namespace Crypyography
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSuspend;
         private System.Windows.Forms.Button btnActivate;

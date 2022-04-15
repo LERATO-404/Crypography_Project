@@ -65,7 +65,7 @@ namespace Crypyography
 
         /*======================Methods================================*/
 
-        private static string encryptPassword(string pass)
+        public static string encryptPassword(string pass)
         {
             try
             {
@@ -117,26 +117,28 @@ namespace Crypyography
 
 
 
-        private static string validatePassword(string pass, string confirmPass)
+        public static bool validatePassword(string pass, string confirmPass)
         {
-            string password = "";
+           
             if (pass != "" && confirmPass != "")
             {
                 if (pass.ToString().Trim().ToLower() == confirmPass.ToString().Trim().ToLower())
                 {
-                    password = encryptPassword(pass.ToString());
+                    return true;
                     
                 }
                 else
                 {
                     MessageBox.Show("Password and Confirm Password doesn't match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
                 }
+
             }
             else
             {
                 MessageBox.Show("Please fill all the fields!..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if any fields is empty  
             }
-            return password;
+            return false;
+
         }
 
         /*======================Methods================================*/
@@ -160,18 +162,27 @@ namespace Crypyography
                     "'" + txtPassword.Text + "')";
                     */
                     string sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES(@firstName,@lastName,@userName,@email,@password)";
-                    string passW = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
-                    cmd = new SqlCommand(sql, con);
+                    bool confirmPassword = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
+                    if(confirmPassword == true)
+                    {
+                        string pass = encryptPassword(txtConfirmPassword.Text);
+                        cmd = new SqlCommand(sql, con);
 
-                    cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
-                    cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
-                    cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@password", passW);
+                        cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
+                        cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                        cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
+                        cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@password", pass);
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record inserted!", "New user inserted",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    clearAll();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clearAll();
+                    }
+                    else
+                    {
+                        MessageBox.Show("passowrd and Confirm password should be the same", "Enter password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
 
                     if (con.State == ConnectionState.Open)
                         con.Close();
