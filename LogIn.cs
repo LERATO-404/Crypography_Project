@@ -80,6 +80,8 @@ namespace Crypyography
                 {
                     
                     encryptPass = encryptPassword(txtPasswordLog.Text);
+                    string userNameAdmin = txtUserNameEmail.Text.ToLower();
+                       
                     string query = "SELECT * from [user] WHERE username ='" + txtUserNameEmail.Text + "' AND password ='" + encryptPass + "'";
                     if (txtPasswordLog.Text == decryptPassword(encryptPass))
                     {
@@ -90,7 +92,7 @@ namespace Crypyography
                         if (myReader.HasRows)
                         {
                             LandingPage landingP = new LandingPage();
-                            if (txtUserNameEmail.Text == "admin" && decryptPassword(encryptPass) == "admin")
+                            if (userNameAdmin == "admin"  && decryptPassword(encryptPass) == "admin" )
                             {
                                 //landingP.Admin.Enabled = true;
                                 landingP.tControl.TabPages.Add(landingP.Admin); // show admin tab when the admin log in
