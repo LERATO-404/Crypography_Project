@@ -125,16 +125,13 @@ namespace Crypyography
                 if (pass.ToString().Trim().ToLower() == confirmPass.ToString().Trim().ToLower())
                 {
                     return true;
-                    
                 }
                 else
                 {
                     MessageBox.Show("Password and Confirm Password doesn't match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
                 }
 
-            }
-            else
-            {
+            }else{
                 MessageBox.Show("Please fill all the fields!..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if any fields is empty  
             }
             return false;
@@ -180,7 +177,7 @@ namespace Crypyography
                     }
                     else
                     {
-                        MessageBox.Show("passowrd and Confirm password should be the same", "Enter password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //MessageBox.Show("passowrd and Confirm password should be the same", "Enter password", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     
 

@@ -99,7 +99,7 @@ namespace Crypyography
                             }
                             landingP.Show(); //show landing page
                             myReader.Close();
-                             this.Hide();
+                            this.Hide();
 
                         }
                         else
