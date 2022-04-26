@@ -41,7 +41,6 @@ namespace Crypyography
             this.ChooseFile = new System.Windows.Forms.TabPage();
             this.lblLogOff = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rbTextFile = new System.Windows.Forms.RadioButton();
             this.rbPhoto = new System.Windows.Forms.RadioButton();
             this.rbRar = new System.Windows.Forms.RadioButton();
             this.rbFile = new System.Windows.Forms.RadioButton();
@@ -219,7 +218,6 @@ namespace Crypyography
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.rbTextFile);
             this.groupBox3.Controls.Add(this.rbPhoto);
             this.groupBox3.Controls.Add(this.rbRar);
             this.groupBox3.Controls.Add(this.rbFile);
@@ -231,17 +229,6 @@ namespace Crypyography
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Attachment Type";
             // 
-            // rbTextFile
-            // 
-            this.rbTextFile.AutoSize = true;
-            this.rbTextFile.Location = new System.Drawing.Point(6, 19);
-            this.rbTextFile.Name = "rbTextFile";
-            this.rbTextFile.Size = new System.Drawing.Size(65, 17);
-            this.rbTextFile.TabIndex = 14;
-            this.rbTextFile.TabStop = true;
-            this.rbTextFile.Text = "Text File";
-            this.rbTextFile.UseVisualStyleBackColor = true;
-            // 
             // rbPhoto
             // 
             this.rbPhoto.AutoSize = true;
@@ -252,6 +239,7 @@ namespace Crypyography
             this.rbPhoto.TabStop = true;
             this.rbPhoto.Text = "Photo";
             this.rbPhoto.UseVisualStyleBackColor = true;
+            this.rbPhoto.CheckedChanged += new System.EventHandler(this.rbPhoto_CheckedChanged);
             // 
             // rbRar
             // 
@@ -263,23 +251,24 @@ namespace Crypyography
             this.rbRar.TabStop = true;
             this.rbRar.Text = "Rar";
             this.rbRar.UseVisualStyleBackColor = true;
+            this.rbRar.CheckedChanged += new System.EventHandler(this.rbRar_CheckedChanged);
             // 
             // rbFile
             // 
             this.rbFile.AutoSize = true;
-            this.rbFile.Location = new System.Drawing.Point(111, 19);
+            this.rbFile.Location = new System.Drawing.Point(6, 19);
             this.rbFile.Name = "rbFile";
-            this.rbFile.Size = new System.Drawing.Size(41, 17);
+            this.rbFile.Size = new System.Drawing.Size(65, 17);
             this.rbFile.TabIndex = 10;
             this.rbFile.TabStop = true;
-            this.rbFile.Text = "File";
+            this.rbFile.Text = "Text File";
             this.rbFile.UseVisualStyleBackColor = true;
             this.rbFile.CheckedChanged += new System.EventHandler(this.rbFile_CheckedChanged);
             // 
             // rbFolder
             // 
             this.rbFolder.AutoSize = true;
-            this.rbFolder.Location = new System.Drawing.Point(111, 42);
+            this.rbFolder.Location = new System.Drawing.Point(93, 19);
             this.rbFolder.Name = "rbFolder";
             this.rbFolder.Size = new System.Drawing.Size(54, 17);
             this.rbFolder.TabIndex = 11;
@@ -305,9 +294,9 @@ namespace Crypyography
             this.lblChoosenFile.AutoSize = true;
             this.lblChoosenFile.Location = new System.Drawing.Point(129, 222);
             this.lblChoosenFile.Name = "lblChoosenFile";
-            this.lblChoosenFile.Size = new System.Drawing.Size(84, 13);
+            this.lblChoosenFile.Size = new System.Drawing.Size(83, 13);
             this.lblChoosenFile.TabIndex = 8;
-            this.lblChoosenFile.Text = "No File choosen";
+            this.lblChoosenFile.Text = "No File selected";
             this.lblChoosenFile.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // label2
@@ -819,7 +808,6 @@ namespace Crypyography
         private System.Windows.Forms.TextBox txtFilePathEn;
         private System.Windows.Forms.TextBox txtFilePathDe;
         private System.Windows.Forms.RadioButton rbRar;
-        private System.Windows.Forms.RadioButton rbTextFile;
         private System.Windows.Forms.RadioButton rbPhoto;
         private System.Windows.Forms.Label lblEn;
         private System.Windows.Forms.Button browseEn;

@@ -128,7 +128,7 @@ namespace Crypyography
                 }
                 else
                 {
-                    MessageBox.Show("Password and Confirm Password doesn't match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
+                    MessageBox.Show("Entererd Password/key doesn not match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
                 }
 
             }else{

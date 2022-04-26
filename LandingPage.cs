@@ -91,7 +91,7 @@ namespace Crypyography
         private void enableChoose()
         {
             
-            if (rbFile.Checked == true || rbFolder.Checked == true)
+            if (rbFile.Checked == true || rbFolder.Checked == true || rbPhoto.Checked == true || rbRar.Checked == true)
             {
                 btnChooseFile.Enabled = true;
             }
@@ -107,26 +107,31 @@ namespace Crypyography
 
         private void attachementType()
         {
+            fileToOpen = new OpenFileDialog();
+            fileToOpen.Title = "Select File";
+            fileToOpen.InitialDirectory = @"C:\";
+            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Images (*.png)|*.jpg|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+            fileToOpen.FilterIndex = 2;
+            fileToOpen.ShowDialog();
+
             if (rbFile.Checked)
             {
-                fileToOpen = new OpenFileDialog();
-                fileToOpen.Title = "Select File";
-                fileToOpen.InitialDirectory = @"C:\";//--"C:\\";
-                fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
-                fileToOpen.FilterIndex = 2;
-                fileToOpen.ShowDialog(); 
-
                 if (openFileDialog1.FileName != "")
                 {
-                    
                     lblChoosenFile.Text = fileToOpen.FileName;
-                    //txtFilePathEn.Text = lblChoosenFile.Text;
-                    
                 }
                 else
                 {
                     lblChoosenFile.Text = "You did not select the file!";
                 }
+            }
+            else if (rbPhoto.Checked)
+            {
+
+            }
+            else if (rbRar.Checked)
+            {
+
             }
             else if (rbFolder.Checked)
             {
@@ -141,6 +146,10 @@ namespace Crypyography
                 {
                     lblChoosenFile.Text = "You did not select the folder!";
                 }
+            }
+            else
+            {
+
             }
         }
 
@@ -325,12 +334,14 @@ namespace Crypyography
 
         private void browseDe_Click(object sender, EventArgs e)
         {
+            //call the decryption method/function
             saveFile();
             cboxDeleteDe.Enabled = true;
         }
 
         private void browseEn_Click(object sender, EventArgs e)
         {
+            //call the Encryption method/function
             Register validateKey = new Register();
             bool isKeySame = Register.validatePassword(txtKeyEn.Text , txtRepeatKeyEn.Text);
             try
@@ -424,6 +435,16 @@ namespace Crypyography
         private void txtFileEn_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rbPhoto_CheckedChanged(object sender, EventArgs e)
+        {
+            enableChoose();
+        }
+
+        private void rbRar_CheckedChanged(object sender, EventArgs e)
+        {
+            enableChoose();
         }
     }
 }

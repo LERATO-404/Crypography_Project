@@ -11,3 +11,4 @@ C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Cryp
 C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\obj\Debug\Crypyography.pdb
 C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\bin\Debug\App_Data\CryptographyDB.mdf
 C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\bin\Debug\App_Data\CryptographyDB_log.ldf
+C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\obj\Debug\Crypyography.csproj.AssemblyReference.cache
