@@ -146,79 +146,49 @@ namespace Crypyography
 
             try
             {
-
-                if (txtFirstName.Text != "" || txtLastName.Text != "" || txtUserName.Text != "" || txtEmail.Text != "")
+                bool confirmPassword = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
+                if (confirmPassword == true && (txtFirstName.Text != "" || txtLastName.Text != "" || txtUserName.Text != "" || txtEmail.Text != " "))
                 {
-                    if (con.State != ConnectionState.Open)
+                     if (con.State != ConnectionState.Open)
                         con.Open();
-                    /*
-                    String sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES('" + txtFirstName.Text + "'," +
-                    "'" + txtLastName.Text + "'," +
-                    "'" + txtUserName.Text + "'," +
-                    "'" + txtEmail.Text + "'," +
-                    "'" + txtPassword.Text + "')";
-                    */
-                    string sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES(@firstName,@lastName,@userName,@email,@password)";
-                    bool confirmPassword = validatePassword(txtPassword.Text.ToString(), txtConfirmPassword.Text.ToString());
-                    if(confirmPassword == true)
-                    {
-                        string pass = encryptPassword(txtConfirmPassword.Text);
-                        cmd = new SqlCommand(sql, con);
-
-                        cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
-                        cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
-                        cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                        cmd.Parameters.AddWithValue("@password", pass);
-
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        clearAll();
-                    }
-                    else
-                    {
-                        //MessageBox.Show("passowrd and Confirm password should be the same", "Enter password", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                     
+                      string sql = @"INSERT INTO [user](firstName,lastName,userName,email,password) VALUES(@firstName,@lastName,@userName,@email,@password)";
+         
+                      string pass = encryptPassword(txtConfirmPassword.Text);
+                      cmd = new SqlCommand(sql, con);
 
+                      cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text);
+                      cmd.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                      cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
+                      cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                      cmd.Parameters.AddWithValue("@password", pass);
+
+                      cmd.ExecuteNonQuery();
+                      MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      clearAll();
+                  
+             
                     if (con.State == ConnectionState.Open)
                         con.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Please fill all the fields!..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(confirmPassword == true)
+                        MessageBox.Show("Please fill all the fields!..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                  
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Unsername already taken", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUserName.Clear();
+                txtUserName.Focus();
             }
         }
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (con.State != ConnectionState.Open)
-                    con.Open();
-                string sql;
-                adapter = new SqlDataAdapter();
-                sql = @"Select * FROM [user]";
-                cmd = new SqlCommand(sql, con);
-                ds = new DataSet();
-                adapter.SelectCommand = cmd;
-                adapter.Fill(ds, "Info");
-                dataGridView1.DataSource = ds; 
-                dataGridView1.DataMember = "Info";
-                
-                if (con.State == ConnectionState.Open)
-                    con.Close();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error in base64Encode" + ex.Message);
-            }
+            
             
         }
 

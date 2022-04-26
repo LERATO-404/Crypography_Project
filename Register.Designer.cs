@@ -33,8 +33,6 @@ namespace Crypyography
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblSignIn = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnDisplay = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -55,15 +53,12 @@ namespace Crypyography
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.btnDisplay);
-            this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(67, 54);
             this.groupBox1.Name = "groupBox1";
@@ -76,7 +71,7 @@ namespace Crypyography
             // 
             this.groupBox3.Controls.Add(this.lblSignIn);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(24, 362);
+            this.groupBox3.Location = new System.Drawing.Point(300, 362);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(288, 58);
             this.groupBox3.TabIndex = 15;
@@ -104,25 +99,6 @@ namespace Crypyography
             this.label10.Text = "Have an account?";
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
-            // btnDisplay
-            // 
-            this.btnDisplay.Location = new System.Drawing.Point(742, 296);
-            this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(98, 32);
-            this.btnDisplay.TabIndex = 17;
-            this.btnDisplay.Text = "Display";
-            this.btnDisplay.UseVisualStyleBackColor = true;
-            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(318, 105);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(522, 185);
-            this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label9);
@@ -139,7 +115,7 @@ namespace Crypyography
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtLastName);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(24, 19);
+            this.groupBox2.Location = new System.Drawing.Point(300, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(288, 337);
             this.groupBox2.TabIndex = 16;
@@ -306,7 +282,6 @@ namespace Crypyography
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -334,8 +309,6 @@ namespace Crypyography
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Button btnDisplay;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

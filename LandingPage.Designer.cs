@@ -78,8 +78,6 @@ namespace Crypyography
             this.label8 = new System.Windows.Forms.Label();
             this.Admin = new System.Windows.Forms.TabPage();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSuspend = new System.Windows.Forms.Button();
-            this.btnActivate = new System.Windows.Forms.Button();
             this.dataGridViewDelete = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtUserDeleteId = new System.Windows.Forms.TextBox();
@@ -604,8 +602,6 @@ namespace Crypyography
             // 
             this.Admin.BackColor = System.Drawing.SystemColors.Control;
             this.Admin.Controls.Add(this.btnDelete);
-            this.Admin.Controls.Add(this.btnSuspend);
-            this.Admin.Controls.Add(this.btnActivate);
             this.Admin.Controls.Add(this.dataGridViewDelete);
             this.Admin.Controls.Add(this.groupBox5);
             this.Admin.Location = new System.Drawing.Point(4, 22);
@@ -617,34 +613,13 @@ namespace Crypyography
             // btnDelete
             // 
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Location = new System.Drawing.Point(175, 218);
+            this.btnDelete.Location = new System.Drawing.Point(13, 218);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnSuspend
-            // 
-            this.btnSuspend.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSuspend.Location = new System.Drawing.Point(94, 218);
-            this.btnSuspend.Name = "btnSuspend";
-            this.btnSuspend.Size = new System.Drawing.Size(75, 23);
-            this.btnSuspend.TabIndex = 9;
-            this.btnSuspend.Text = "Suspend";
-            this.btnSuspend.UseVisualStyleBackColor = true;
-            // 
-            // btnActivate
-            // 
-            this.btnActivate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActivate.Location = new System.Drawing.Point(13, 218);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 8;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // dataGridViewDelete
             // 
@@ -819,8 +794,6 @@ namespace Crypyography
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSuspend;
-        private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.DataGridView dataGridViewDelete;
         private System.Windows.Forms.TextBox txtUserDeleteId;
         private System.Windows.Forms.Button btnClear;

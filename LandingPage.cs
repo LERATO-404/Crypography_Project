@@ -33,6 +33,7 @@ namespace Crypyography
             btnProceed.Enabled = false;
             cboxDeleteEn.Enabled = false;
             cboxDeleteDe.Enabled = false;
+            rbFolder.Visible = false;
             lblUserCount.Text = "0";
             tControl.TabPages.Remove(Admin);
         }
@@ -285,7 +286,20 @@ namespace Crypyography
                 if (cboxOption.SelectedIndex == 0)
                 {
                     txtFilePathEn.Text = lblChoosenFile.Text;
-                    txtFileEn.Text = File.ReadAllText(fileToOpen.FileName);
+                    if(rbFile.Checked == true)
+                    {
+                        txtFileEn.Text = File.ReadAllText(fileToOpen.FileName);
+                    }
+                    else if(rbPhoto.Checked == true)
+                    {
+                        // disable the txtFileEn textbox
+                        //show a picturebox with the image
+                    }
+                    else if (rbRar.Checked == true)
+                    {
+                        // txtfileEn.text == "Rar file";
+                    }
+                          
                     tControl.SelectedTab = Encrypt;
                     Encrypt.Show();
 
