@@ -22,8 +22,6 @@ namespace Crypyography
         //True";
         SqlConnection con;
         SqlCommand cmd;
-        SqlDataAdapter adapter;
-        DataSet ds;
         private static Random rand;
 
 
