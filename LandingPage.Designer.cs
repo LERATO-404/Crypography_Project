@@ -51,14 +51,13 @@ namespace Crypyography
             this.Encrypt = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.photoBoxEn = new System.Windows.Forms.PictureBox();
-            this.txtFileEn = new System.Windows.Forms.TextBox();
+            this.txtFileEnContent = new System.Windows.Forms.TextBox();
             this.txtFilePathEn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnDoneEn = new System.Windows.Forms.Button();
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblEn = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtKeyEn = new System.Windows.Forms.TextBox();
@@ -328,7 +327,7 @@ namespace Crypyography
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.photoBoxEn);
-            this.groupBox6.Controls.Add(this.txtFileEn);
+            this.groupBox6.Controls.Add(this.txtFileEnContent);
             this.groupBox6.Controls.Add(this.txtFilePathEn);
             this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Location = new System.Drawing.Point(21, 15);
@@ -347,14 +346,14 @@ namespace Crypyography
             this.photoBoxEn.TabIndex = 15;
             this.photoBoxEn.TabStop = false;
             // 
-            // txtFileEn
+            // txtFileEnContent
             // 
-            this.txtFileEn.Location = new System.Drawing.Point(21, 96);
-            this.txtFileEn.Multiline = true;
-            this.txtFileEn.Name = "txtFileEn";
-            this.txtFileEn.Size = new System.Drawing.Size(317, 276);
-            this.txtFileEn.TabIndex = 14;
-            this.txtFileEn.TextChanged += new System.EventHandler(this.txtFileEn_TextChanged);
+            this.txtFileEnContent.Location = new System.Drawing.Point(21, 96);
+            this.txtFileEnContent.Multiline = true;
+            this.txtFileEnContent.Name = "txtFileEnContent";
+            this.txtFileEnContent.Size = new System.Drawing.Size(317, 276);
+            this.txtFileEnContent.TabIndex = 14;
+            this.txtFileEnContent.TextChanged += new System.EventHandler(this.txtFileEn_TextChanged);
             // 
             // txtFilePathEn
             // 
@@ -401,7 +400,6 @@ namespace Crypyography
             // 
             this.groupBox1.Controls.Add(this.btnEncrypt);
             this.groupBox1.Controls.Add(this.lblEn);
-            this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.txtRepeatKeyEn);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtKeyEn);
@@ -417,23 +415,13 @@ namespace Crypyography
             // lblEn
             // 
             this.lblEn.AutoSize = true;
-            this.lblEn.Location = new System.Drawing.Point(107, 164);
+            this.lblEn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEn.Location = new System.Drawing.Point(23, 151);
             this.lblEn.Name = "lblEn";
-            this.lblEn.Size = new System.Drawing.Size(16, 13);
+            this.lblEn.Size = new System.Drawing.Size(11, 9);
             this.lblEn.TabIndex = 12;
             this.lblEn.Text = "...";
             this.lblEn.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Location = new System.Drawing.Point(26, 154);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 11;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.browseEn_Click);
             // 
             // txtRepeatKeyEn
             // 
@@ -814,7 +802,6 @@ namespace Crypyography
         private System.Windows.Forms.RadioButton rbRar;
         private System.Windows.Forms.RadioButton rbPhoto;
         private System.Windows.Forms.Label lblEn;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblDe;
         private System.Windows.Forms.Button browseDe;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -832,7 +819,7 @@ namespace Crypyography
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtFileDe;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtFileEn;
+        private System.Windows.Forms.TextBox txtFileEnContent;
         private System.Windows.Forms.Label lblLogOff;
         private System.Windows.Forms.PictureBox photoBoxEn;
         private System.Windows.Forms.Button btnEncrypt;

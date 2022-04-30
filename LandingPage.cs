@@ -180,7 +180,7 @@ namespace Crypyography
            
             if (saveF.ShowDialog() == DialogResult.OK)
             {
-                string encText = txtFileEn.Text;
+                string encText = txtFileEnContent.Text;
                 string decText = txtFileDe.Text;
                 s = File.Open(saveF.FileName, FileMode.CreateNew);
                 using (swrite = new StreamWriter(s))
@@ -305,7 +305,7 @@ namespace Crypyography
                     txtFilePathEn.Text = lblChoosenFile.Text;
                     if(rbFile.Checked == true)
                     {
-                        txtFileEn.Text = File.ReadAllText(fileToOpen.FileName);
+                        txtFileEnContent.Text = File.ReadAllText(fileToOpen.FileName);
                         
                     }
                     else if(rbPhoto.Checked == true)
@@ -321,10 +321,9 @@ namespace Crypyography
                     }
                     else if (rbRar.Checked == true)
                     {
-                        txtFileEn.Text = "Rar file";
+                        txtFileEnContent.Text = "Rar file";
                         
                     }
-                          
                     tControl.SelectedTab = Encrypt;
                     Encrypt.Show();
 
@@ -381,23 +380,7 @@ namespace Crypyography
 
         private void browseEn_Click(object sender, EventArgs e)
         {
-            
-            Register validateKey = new Register();
-            bool isKeySame = Register.validatePassword(txtKeyEn.Text , txtRepeatKeyEn.Text);
-            try
-            {
-                if (txtKeyEn.Text != "" && txtRepeatKeyEn.Text != "" && (isKeySame == true))
-                {
-                    
-                    //ToDo if the file is encoded save if not try
-                    //saveFile();
-                    cboxDeleteEn.Enabled = true;
-                }
-            }
-            catch(IOException ioEx)
-            {
-                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -508,7 +491,10 @@ namespace Crypyography
         private void btnCancelEn_Click(object sender, EventArgs e)
         {
             txtFilePathEn.Clear();
-            txtFileEn.Clear();
+            txtFileEnContent.Clear();
+            txtKeyEn.Clear();
+            txtRepeatKeyEn.Clear();
+            lblEn.Text = "";
             photoBoxEn.Visible = false;
             tControl.SelectedTab = ChooseFile;
             ChooseFile.Show();
@@ -525,28 +511,34 @@ namespace Crypyography
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
+            Register validateKey = new Register();
+            bool isKeySame = Register.validatePassword(txtKeyEn.Text, txtRepeatKeyEn.Text);
             try
             {
+                if (txtKeyEn.Text != "" && txtRepeatKeyEn.Text != "" && (isKeySame == true))
+                {
+                    string fileName = txtFilePathEn.Text;
+                    string fileExtension = Path.GetExtension(txtFilePathEn.Text); // extension of the filePath
+                    string input = fileName + fileExtension; // original filePath + the extension
+                    string output = fileName + "_enc" + fileExtension; // the new encrypted file path
+                    bool isEncypted = this.Encode(fileName, output); // encode file and save it as output
 
-                string fileName = txtFilePathEn.Text;
-                string fileExtension = Path.GetExtension(txtFilePathEn.Text);
-                string input = fileName + fileExtension;
-                string output = fileName + "_enc" + fileExtension;
-                bool isEncypted = this.Encode(fileName, output);
-
-                if (isEncypted == true)
-                    MessageBox.Show("File is Encoded", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show("File not Encoded", "The did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    if (isEncypted == true)
+                    {
+                        MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblEn.Text = output;
+                        cboxDeleteEn.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("File not Encoded", "The did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
-            catch(Exception ex)
+            catch(IOException ex)
             {
-
-            }
-
-
-            
+                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
         }
 
         private void lblChoosenFile_Click(object sender, EventArgs e)
