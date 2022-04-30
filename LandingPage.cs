@@ -112,7 +112,7 @@ namespace Crypyography
             fileToOpen = new OpenFileDialog();
             fileToOpen.Title = "Select File";
             fileToOpen.InitialDirectory = @"C:\";
-            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.bmp)| *.jpg; *.jpeg; *.gif; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)| *.jpg; *.jpeg; *.gif; *.png; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
             fileToOpen.FilterIndex = 2;
             fileToOpen.ShowDialog();
 
@@ -176,7 +176,7 @@ namespace Crypyography
             saveF = new SaveFileDialog();
             saveF.Title = "Save File";
             saveF.InitialDirectory = @"C:\";//--"C:\\";
-            saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.bmp)| *.jpg; *.jpeg; *.gif; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+            saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)| *.jpg; *.jpeg; *.gif; *.png; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
            
             if (saveF.ShowDialog() == DialogResult.OK)
             {
