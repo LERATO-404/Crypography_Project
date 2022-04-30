@@ -87,6 +87,7 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.photoBoxEn = new System.Windows.Forms.PictureBox();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,6 +100,7 @@ namespace Crypyography
             this.Admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -323,6 +325,7 @@ namespace Crypyography
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.photoBoxEn);
             this.groupBox6.Controls.Add(this.txtFileEn);
             this.groupBox6.Controls.Add(this.txtFilePathEn);
             this.groupBox6.Controls.Add(this.label7);
@@ -381,6 +384,7 @@ namespace Crypyography
             this.btnCancelEn.TabIndex = 9;
             this.btnCancelEn.Text = "Cancel";
             this.btnCancelEn.UseVisualStyleBackColor = true;
+            this.btnCancelEn.Click += new System.EventHandler(this.btnCancelEn_Click);
             // 
             // groupBox1
             // 
@@ -547,6 +551,7 @@ namespace Crypyography
             this.btnCancelDe.TabIndex = 9;
             this.btnCancelDe.Text = "Cancel";
             this.btnCancelDe.UseVisualStyleBackColor = true;
+            this.btnCancelDe.Click += new System.EventHandler(this.btnCancelDe_Click);
             // 
             // btnDoneDe
             // 
@@ -713,6 +718,15 @@ namespace Crypyography
             this.label12.TabIndex = 3;
             this.label12.Text = "Registered users:";
             // 
+            // photoBoxEn
+            // 
+            this.photoBoxEn.Location = new System.Drawing.Point(32, 104);
+            this.photoBoxEn.Name = "photoBoxEn";
+            this.photoBoxEn.Size = new System.Drawing.Size(295, 258);
+            this.photoBoxEn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.photoBoxEn.TabIndex = 15;
+            this.photoBoxEn.TabStop = false;
+            // 
             // LandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,6 +755,7 @@ namespace Crypyography
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -805,5 +820,6 @@ namespace Crypyography
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtFileEn;
         private System.Windows.Forms.Label lblLogOff;
+        private System.Windows.Forms.PictureBox photoBoxEn;
     }
 }

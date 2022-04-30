@@ -34,6 +34,7 @@ namespace Crypyography
             cboxDeleteEn.Enabled = false;
             cboxDeleteDe.Enabled = false;
             rbFolder.Visible = false;
+            photoBoxEn.Visible = false;
             lblUserCount.Text = "0";
             tControl.TabPages.Remove(Admin);
         }
@@ -115,7 +116,7 @@ namespace Crypyography
             fileToOpen.FilterIndex = 2;
             fileToOpen.ShowDialog();
 
-            if (rbFile.Checked)
+            if (rbFile.Checked || rbPhoto.Checked || rbRar.Checked)
             {
                 if (openFileDialog1.FileName != "")
                 {
@@ -125,14 +126,6 @@ namespace Crypyography
                 {
                     lblChoosenFile.Text = "You did not select the file!";
                 }
-            }
-            else if (rbPhoto.Checked)
-            {
-
-            }
-            else if (rbRar.Checked)
-            {
-
             }
             else if (rbFolder.Checked)
             {
@@ -212,29 +205,7 @@ namespace Crypyography
         }
 
 
-        public static string encryptFile(string encryptString)   
-        {
-            string EncryptionKey = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio";  //we can change the code converstion key as per our requirement    
-            byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {
-            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
-        });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(clearBytes, 0, clearBytes.Length);
-                        cs.Close();
-                    }
-                    encryptString = Convert.ToBase64String(ms.ToArray());
-                }
-            }
-            return encryptString;
-        }
+       
 
         public int userCount()
         {
@@ -263,6 +234,7 @@ namespace Crypyography
             
             try
             {
+                
                 attachementType();
             }
             catch (FileNotFoundException ex1)
@@ -281,33 +253,42 @@ namespace Crypyography
         private void btnProceed_Click(object sender, EventArgs e)
         {
             
-            if (rbFile.Checked || rbFolder.Checked)
+            if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
             {
-                if (cboxOption.SelectedIndex == 0)
+                if (cboxOption.SelectedIndex == 0) //encryption tab
                 {
                     txtFilePathEn.Text = lblChoosenFile.Text;
                     if(rbFile.Checked == true)
                     {
                         txtFileEn.Text = File.ReadAllText(fileToOpen.FileName);
+                        
                     }
                     else if(rbPhoto.Checked == true)
                     {
                         // disable the txtFileEn textbox
                         //show a picturebox with the image
+                        photoBoxEn.Visible = true;
+                        //fileToOpen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                
+                        // display image in picture box  
+                        photoBoxEn.Image = new Bitmap(fileToOpen.FileName);
+                        
                     }
                     else if (rbRar.Checked == true)
                     {
-                        // txtfileEn.text == "Rar file";
+                        txtFileEn.Text = "Rar file";
+                        
                     }
                           
                     tControl.SelectedTab = Encrypt;
                     Encrypt.Show();
 
                 }
-                else if (cboxOption.SelectedIndex == 1)
+                else if (cboxOption.SelectedIndex == 1) //decryption tab
                 {
                     txtFilePathDe.Text = lblChoosenFile.Text;
-                    txtFileDe.Text = File.ReadAllText(fileToOpen.FileName);
+                    //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
+                    //Show the decrypted file
                     tControl.SelectedTab = Decrypt;
                     Decrypt.Show();
                 }
@@ -376,20 +357,36 @@ namespace Crypyography
         {
             try
             {
-                con.Open();
-                adapt = new SqlDataAdapter();
-                string sqlDelete = "DELETE [user] WHERE Id='"+txtUserDeleteId.Text+"'";
-                //string sqlDeleteAll = "DELETE * FROM [user]";
-                cmd = new SqlCommand();
+                if (txtUserDeleteId.Text != "")
+                {
+                    con.Open();
+                    adapt = new SqlDataAdapter();
+                    string sqlDelete = "DELETE [user] WHERE Id='" + txtUserDeleteId.Text + "'";
+                    cmd = new SqlCommand();
 
-                adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
-                adapt.DeleteCommand.ExecuteNonQuery();
+                    adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
+                    int deleteUser = adapt.DeleteCommand.ExecuteNonQuery();
 
-                MessageBox.Show("User Removed", "user removed", MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
+                    if (deleteUser > 0) { 
+                        MessageBox.Show("User Removed", "user removed", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    }
+                    else { 
+                        MessageBox.Show("User Id not found", "Id not found", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        txtUserDeleteId.Focus();
+                    }
 
-                cmd.Dispose();
-                con.Close();
+
+
+
+                    cmd.Dispose();
+                    con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Enter user id", "User Id not entered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUserDeleteId.Focus();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -459,6 +456,24 @@ namespace Crypyography
         private void rbRar_CheckedChanged(object sender, EventArgs e)
         {
             enableChoose();
+        }
+
+        private void btnCancelEn_Click(object sender, EventArgs e)
+        {
+            txtFilePathEn.Clear();
+            txtFileEn.Clear();
+            photoBoxEn.Visible = false;
+            tControl.SelectedTab = ChooseFile;
+            ChooseFile.Show();
+
+        }
+
+        private void btnCancelDe_Click(object sender, EventArgs e)
+        {
+            txtFilePathDe.Clear();
+            txtFileDe.Clear();
+            tControl.SelectedTab = ChooseFile;
+            ChooseFile.Show();
         }
     }
 }
