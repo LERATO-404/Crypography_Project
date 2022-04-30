@@ -153,7 +153,7 @@ namespace Crypyography
         {
             Register signIn = new Register();
             signIn.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }

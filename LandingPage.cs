@@ -112,7 +112,7 @@ namespace Crypyography
             fileToOpen = new OpenFileDialog();
             fileToOpen.Title = "Select File";
             fileToOpen.InitialDirectory = @"C:\";
-            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Images (*.png)|*.jpg|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.bmp)| *.jpg; *.jpeg; *.gif; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
             fileToOpen.FilterIndex = 2;
             fileToOpen.ShowDialog();
 
@@ -268,7 +268,7 @@ namespace Crypyography
                         // disable the txtFileEn textbox
                         //show a picturebox with the image
                         photoBoxEn.Visible = true;
-                        //fileToOpen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                        //fileToOpen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp)";
                 
                         // display image in picture box  
                         photoBoxEn.Image = new Bitmap(fileToOpen.FileName);
