@@ -50,6 +50,7 @@ namespace Crypyography
             this.label2 = new System.Windows.Forms.Label();
             this.Encrypt = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.photoBoxEn = new System.Windows.Forms.PictureBox();
             this.txtFileEn = new System.Windows.Forms.TextBox();
             this.txtFilePathEn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@ namespace Crypyography
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblEn = new System.Windows.Forms.Label();
-            this.browseEn = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtKeyEn = new System.Windows.Forms.TextBox();
@@ -87,12 +88,13 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.photoBoxEn = new System.Windows.Forms.PictureBox();
+            this.btnEncrypt = new System.Windows.Forms.Button();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Encrypt.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.Decrypt.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -100,7 +102,6 @@ namespace Crypyography
             this.Admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -298,6 +299,7 @@ namespace Crypyography
             this.lblChoosenFile.TabIndex = 8;
             this.lblChoosenFile.Text = "No File selected";
             this.lblChoosenFile.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.lblChoosenFile.Click += new System.EventHandler(this.lblChoosenFile_Click);
             // 
             // label2
             // 
@@ -335,6 +337,15 @@ namespace Crypyography
             this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Encryption";
+            // 
+            // photoBoxEn
+            // 
+            this.photoBoxEn.Location = new System.Drawing.Point(32, 104);
+            this.photoBoxEn.Name = "photoBoxEn";
+            this.photoBoxEn.Size = new System.Drawing.Size(295, 258);
+            this.photoBoxEn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.photoBoxEn.TabIndex = 15;
+            this.photoBoxEn.TabStop = false;
             // 
             // txtFileEn
             // 
@@ -388,8 +399,9 @@ namespace Crypyography
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEncrypt);
             this.groupBox1.Controls.Add(this.lblEn);
-            this.groupBox1.Controls.Add(this.browseEn);
+            this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.txtRepeatKeyEn);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtKeyEn);
@@ -397,7 +409,7 @@ namespace Crypyography
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(392, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 200);
+            this.groupBox1.Size = new System.Drawing.Size(350, 236);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Encryption Key";
@@ -405,23 +417,23 @@ namespace Crypyography
             // lblEn
             // 
             this.lblEn.AutoSize = true;
-            this.lblEn.Location = new System.Drawing.Point(107, 139);
+            this.lblEn.Location = new System.Drawing.Point(107, 164);
             this.lblEn.Name = "lblEn";
             this.lblEn.Size = new System.Drawing.Size(16, 13);
             this.lblEn.TabIndex = 12;
             this.lblEn.Text = "...";
             this.lblEn.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
-            // browseEn
+            // btnSave
             // 
-            this.browseEn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.browseEn.Location = new System.Drawing.Point(26, 129);
-            this.browseEn.Name = "browseEn";
-            this.browseEn.Size = new System.Drawing.Size(75, 23);
-            this.browseEn.TabIndex = 11;
-            this.browseEn.Text = "Encrypt";
-            this.browseEn.UseVisualStyleBackColor = true;
-            this.browseEn.Click += new System.EventHandler(this.browseEn_Click);
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Location = new System.Drawing.Point(26, 154);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.browseEn_Click);
             // 
             // txtRepeatKeyEn
             // 
@@ -450,7 +462,7 @@ namespace Crypyography
             // cboxDeleteEn
             // 
             this.cboxDeleteEn.AutoSize = true;
-            this.cboxDeleteEn.Location = new System.Drawing.Point(26, 168);
+            this.cboxDeleteEn.Location = new System.Drawing.Point(26, 193);
             this.cboxDeleteEn.Name = "cboxDeleteEn";
             this.cboxDeleteEn.Size = new System.Drawing.Size(185, 17);
             this.cboxDeleteEn.TabIndex = 0;
@@ -718,14 +730,16 @@ namespace Crypyography
             this.label12.TabIndex = 3;
             this.label12.Text = "Registered users:";
             // 
-            // photoBoxEn
+            // btnEncrypt
             // 
-            this.photoBoxEn.Location = new System.Drawing.Point(32, 104);
-            this.photoBoxEn.Name = "photoBoxEn";
-            this.photoBoxEn.Size = new System.Drawing.Size(295, 258);
-            this.photoBoxEn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.photoBoxEn.TabIndex = 15;
-            this.photoBoxEn.TabStop = false;
+            this.btnEncrypt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncrypt.Location = new System.Drawing.Point(26, 125);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 13;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
             // LandingPage
             // 
@@ -744,6 +758,7 @@ namespace Crypyography
             this.Encrypt.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.Decrypt.ResumeLayout(false);
@@ -755,7 +770,6 @@ namespace Crypyography
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.photoBoxEn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -800,7 +814,7 @@ namespace Crypyography
         private System.Windows.Forms.RadioButton rbRar;
         private System.Windows.Forms.RadioButton rbPhoto;
         private System.Windows.Forms.Label lblEn;
-        private System.Windows.Forms.Button browseEn;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblDe;
         private System.Windows.Forms.Button browseDe;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -821,5 +835,6 @@ namespace Crypyography
         private System.Windows.Forms.TextBox txtFileEn;
         private System.Windows.Forms.Label lblLogOff;
         private System.Windows.Forms.PictureBox photoBoxEn;
+        private System.Windows.Forms.Button btnEncrypt;
     }
 }

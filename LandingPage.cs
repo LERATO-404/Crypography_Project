@@ -176,8 +176,8 @@ namespace Crypyography
             saveF = new SaveFileDialog();
             saveF.Title = "Save File";
             saveF.InitialDirectory = @"C:\";//--"C:\\";
-            saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
-
+            saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.bmp)| *.jpg; *.jpeg; *.gif; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+           
             if (saveF.ShowDialog() == DialogResult.OK)
             {
                 string encText = txtFileEn.Text;
@@ -187,6 +187,7 @@ namespace Crypyography
                 {
                     if(tControl.SelectedIndex == 1) //encrypt
                     {
+
                         swrite.Write(encText); // updated text encryption
                         //encryptFile(encText);
                         lblEn.Text = saveF.FileName; // filePath
@@ -201,7 +202,6 @@ namespace Crypyography
                     MessageBoxIcon.Information);
                 }
             }
-
         }
 
 
@@ -227,6 +227,51 @@ namespace Crypyography
                 return 0;
             }
         }
+
+
+
+
+        private bool Encode(string inputFilePath, string outputfilePath)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
+            byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
+
+
+            using (Aes encryptor = Aes.Create())
+            {
+                encryptor.KeySize = 256;
+                encryptor.BlockSize = 128;
+
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, saltByte, 1000);
+                encryptor.Key = pdb.GetBytes(encryptor.KeySize/8);
+                encryptor.IV = pdb.GetBytes(encryptor.BlockSize / 8); 
+
+                using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                {
+                    using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        if(rbFile.Checked == true)
+                            using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                            {
+                                int data;
+                                while ((data = fsInput.ReadByte()) != -1)
+                                {
+                                    cs.WriteByte((byte)data);
+                                }
+                            }
+                       
+                    }
+                    return true;
+                }
+            }
+            
+        }
+
+
+
+
+
+
 
         /*------------------Methods-------------------*/
         private void button1_Click(object sender, EventArgs e)
@@ -330,20 +375,22 @@ namespace Crypyography
         private void browseDe_Click(object sender, EventArgs e)
         {
             //call the decryption method/function
-            saveFile();
+            //saveFile();
             cboxDeleteDe.Enabled = true;
         }
 
         private void browseEn_Click(object sender, EventArgs e)
         {
-            //call the Encryption method/function
+            
             Register validateKey = new Register();
             bool isKeySame = Register.validatePassword(txtKeyEn.Text , txtRepeatKeyEn.Text);
             try
             {
                 if (txtKeyEn.Text != "" && txtRepeatKeyEn.Text != "" && (isKeySame == true))
                 {
-                    saveFile();
+                    
+                    //ToDo if the file is encoded save if not try
+                    //saveFile();
                     cboxDeleteEn.Enabled = true;
                 }
             }
@@ -474,6 +521,37 @@ namespace Crypyography
             txtFileDe.Clear();
             tControl.SelectedTab = ChooseFile;
             ChooseFile.Show();
+        }
+
+        private void btnEncrypt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string fileName = txtFilePathEn.Text;
+                string fileExtension = Path.GetExtension(txtFilePathEn.Text);
+                string input = fileName + fileExtension;
+                string output = fileName + "_enc" + fileExtension;
+                bool isEncypted = this.Encode(fileName, output);
+
+                if (isEncypted == true)
+                    MessageBox.Show("File is Encoded", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("File not Encoded", "The did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+
+            
+        }
+
+        private void lblChoosenFile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
