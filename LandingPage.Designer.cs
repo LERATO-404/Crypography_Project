@@ -46,7 +46,7 @@ namespace Crypyography
             this.rbFile = new System.Windows.Forms.RadioButton();
             this.rbFolder = new System.Windows.Forms.RadioButton();
             this.btnChooseFile = new System.Windows.Forms.Button();
-            this.lblChoosenFile = new System.Windows.Forms.Label();
+            this.lblSelectedFile = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Encrypt = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -57,6 +57,7 @@ namespace Crypyography
             this.btnDoneEn = new System.Windows.Forms.Button();
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEncrypt = new System.Windows.Forms.Button();
             this.lblEn = new System.Windows.Forms.Label();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -87,7 +88,6 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnEncrypt = new System.Windows.Forms.Button();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -170,6 +170,7 @@ namespace Crypyography
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // tControl
             // 
@@ -191,7 +192,7 @@ namespace Crypyography
             this.ChooseFile.Controls.Add(this.cboxOption);
             this.ChooseFile.Controls.Add(this.btnChooseFile);
             this.ChooseFile.Controls.Add(this.btnCancel);
-            this.ChooseFile.Controls.Add(this.lblChoosenFile);
+            this.ChooseFile.Controls.Add(this.lblSelectedFile);
             this.ChooseFile.Controls.Add(this.btnProceed);
             this.ChooseFile.Controls.Add(this.label2);
             this.ChooseFile.Controls.Add(this.flowLayoutPanel1);
@@ -211,9 +212,9 @@ namespace Crypyography
             this.lblLogOff.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblLogOff.Location = new System.Drawing.Point(685, 9);
             this.lblLogOff.Name = "lblLogOff";
-            this.lblLogOff.Size = new System.Drawing.Size(40, 13);
+            this.lblLogOff.Size = new System.Drawing.Size(43, 13);
             this.lblLogOff.TabIndex = 13;
-            this.lblLogOff.Text = "Log off";
+            this.lblLogOff.Text = "Log out";
             this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
             // 
             // groupBox3
@@ -289,16 +290,16 @@ namespace Crypyography
             this.btnChooseFile.UseVisualStyleBackColor = true;
             this.btnChooseFile.Click += new System.EventHandler(this.button1_Click);
             // 
-            // lblChoosenFile
+            // lblSelectedFile
             // 
-            this.lblChoosenFile.AutoSize = true;
-            this.lblChoosenFile.Location = new System.Drawing.Point(129, 222);
-            this.lblChoosenFile.Name = "lblChoosenFile";
-            this.lblChoosenFile.Size = new System.Drawing.Size(83, 13);
-            this.lblChoosenFile.TabIndex = 8;
-            this.lblChoosenFile.Text = "No File selected";
-            this.lblChoosenFile.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.lblChoosenFile.Click += new System.EventHandler(this.lblChoosenFile_Click);
+            this.lblSelectedFile.AutoSize = true;
+            this.lblSelectedFile.Location = new System.Drawing.Point(129, 222);
+            this.lblSelectedFile.Name = "lblSelectedFile";
+            this.lblSelectedFile.Size = new System.Drawing.Size(83, 13);
+            this.lblSelectedFile.TabIndex = 8;
+            this.lblSelectedFile.Text = "No File selected";
+            this.lblSelectedFile.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.lblSelectedFile.Click += new System.EventHandler(this.lblChoosenFile_Click);
             // 
             // label2
             // 
@@ -407,10 +408,21 @@ namespace Crypyography
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(392, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 236);
+            this.groupBox1.Size = new System.Drawing.Size(350, 204);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Encryption Key";
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncrypt.Location = new System.Drawing.Point(26, 125);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 13;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
             // lblEn
             // 
@@ -450,7 +462,7 @@ namespace Crypyography
             // cboxDeleteEn
             // 
             this.cboxDeleteEn.AutoSize = true;
-            this.cboxDeleteEn.Location = new System.Drawing.Point(26, 193);
+            this.cboxDeleteEn.Location = new System.Drawing.Point(25, 174);
             this.cboxDeleteEn.Name = "cboxDeleteEn";
             this.cboxDeleteEn.Size = new System.Drawing.Size(185, 17);
             this.cboxDeleteEn.TabIndex = 0;
@@ -490,7 +502,7 @@ namespace Crypyography
             this.groupBox4.Controls.Add(this.txtKeyDe);
             this.groupBox4.Location = new System.Drawing.Point(378, 15);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(350, 154);
+            this.groupBox4.Size = new System.Drawing.Size(350, 167);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Decryption Key";
@@ -498,9 +510,10 @@ namespace Crypyography
             // lblDe
             // 
             this.lblDe.AutoSize = true;
-            this.lblDe.Location = new System.Drawing.Point(107, 88);
+            this.lblDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDe.Location = new System.Drawing.Point(23, 109);
             this.lblDe.Name = "lblDe";
-            this.lblDe.Size = new System.Drawing.Size(16, 13);
+            this.lblDe.Size = new System.Drawing.Size(11, 9);
             this.lblDe.TabIndex = 13;
             this.lblDe.Text = "...";
             this.lblDe.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -528,7 +541,7 @@ namespace Crypyography
             // cboxDeleteDe
             // 
             this.cboxDeleteDe.AutoSize = true;
-            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 123);
+            this.cboxDeleteDe.Location = new System.Drawing.Point(26, 138);
             this.cboxDeleteDe.Name = "cboxDeleteDe";
             this.cboxDeleteDe.Size = new System.Drawing.Size(185, 17);
             this.cboxDeleteDe.TabIndex = 0;
@@ -718,17 +731,6 @@ namespace Crypyography
             this.label12.TabIndex = 3;
             this.label12.Text = "Registered users:";
             // 
-            // btnEncrypt
-            // 
-            this.btnEncrypt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEncrypt.Location = new System.Drawing.Point(26, 125);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 13;
-            this.btnEncrypt.Text = "Encrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
-            // 
             // LandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -775,7 +777,7 @@ namespace Crypyography
         private System.Windows.Forms.TabPage ChooseFile;
         private System.Windows.Forms.TabPage Encrypt;
         private System.Windows.Forms.Button btnChooseFile;
-        private System.Windows.Forms.Label lblChoosenFile;
+        private System.Windows.Forms.Label lblSelectedFile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cboxDeleteEn;

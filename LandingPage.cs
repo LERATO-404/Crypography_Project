@@ -90,6 +90,14 @@ namespace Crypyography
 
         /*------------------Methods-------------------*/
 
+        public void cleanTabOne()
+        {
+            rbFile.Checked = false;
+            rbPhoto.Checked = false;
+            rbRar.Checked = false;
+            lblSelectedFile.Text = "No file Selected";
+        }
+
         private void enableChoose()
         {
             
@@ -120,11 +128,12 @@ namespace Crypyography
             {
                 if (openFileDialog1.FileName != "")
                 {
-                    lblChoosenFile.Text = fileToOpen.FileName;
+                    lblSelectedFile.Text = fileToOpen.FileName;
                 }
                 else
                 {
-                    lblChoosenFile.Text = "You did not select the file!";
+                 
+                    lblSelectedFile.Text = "You did not select the file!";
                 }
             }
             else if (rbFolder.Checked)
@@ -133,17 +142,17 @@ namespace Crypyography
                 if (folderToOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     
-                    lblChoosenFile.Text = folderToOpen.SelectedPath;
+                    lblSelectedFile.Text = folderToOpen.SelectedPath;
                     //txtFilePathDe.Text = lblChoosenFile.Text;
                 }
                 else
                 {
-                    lblChoosenFile.Text = "You did not select the folder!";
+                    lblSelectedFile.Text = "You did not select the folder!";
                 }
             }
             else
             {
-
+                MessageBox.Show("Select the Attachement type you want to Encrypt or Decrypt", "Select Attachement type", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -189,13 +198,11 @@ namespace Crypyography
                     {
 
                         swrite.Write(encText); // updated text encryption
-                        //encryptFile(encText);
                         lblEn.Text = saveF.FileName; // filePath
                     }
                     else if(tControl.SelectedIndex == 2) // decrypt
                     {
                         swrite.Write(decText); // updated text decryption
-                        //decyptFile(decText);
                         lblDe.Text = saveF.FileName; // filepath
                     }
                     MessageBox.Show("New File saved at "+saveF.FileName, "Saved File", MessageBoxButtons.OK,
@@ -233,24 +240,28 @@ namespace Crypyography
 
         private bool Encode(string inputFilePath, string outputfilePath)
         {
-            string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
-            byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
-
-
-            using (Aes encryptor = Aes.Create())
+            bool isFileEncrypted = false;
+            try
             {
-                encryptor.KeySize = 256;
-                encryptor.BlockSize = 128;
+                string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
+                byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
+                
 
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, saltByte, 1000);
-                encryptor.Key = pdb.GetBytes(encryptor.KeySize/8);
-                encryptor.IV = pdb.GetBytes(encryptor.BlockSize / 8); 
 
-                using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                using (Aes encryptor = Aes.Create())
                 {
-                    using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    encryptor.KeySize = 256;
+                    encryptor.BlockSize = 128;
+
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, saltByte, 1000);
+                    encryptor.Key = pdb.GetBytes(encryptor.KeySize / 8);
+                    encryptor.IV = pdb.GetBytes(encryptor.BlockSize / 8);
+
+                    using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
                     {
-                        if(rbFile.Checked == true)
+                        using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                        {
+                            //if(rbFile.Checked == true)
                             using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
                             {
                                 int data;
@@ -259,11 +270,67 @@ namespace Crypyography
                                     cs.WriteByte((byte)data);
                                 }
                             }
-                       
+                        }
+                        isFileEncrypted = true;
+                        return isFileEncrypted;
                     }
-                    return true;
                 }
+
             }
+            catch 
+            {
+                //MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return isFileEncrypted;
+            }
+
+            
+            
+        }
+
+        private bool Decode(string inputFilePath, string outputfilePath)
+        {
+            bool isFileDecrypted = false;
+            try
+            {
+                string EncryptionKey = "MAKV2SPBNI99212";
+                byte[] saltB = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
+                using (Aes encryptor = Aes.Create())
+                {
+                    encryptor.KeySize = 256;
+                    encryptor.BlockSize = 128;
+
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, saltB, 1000);
+                    encryptor.Key = pdb.GetBytes(encryptor.KeySize / 8);
+                    encryptor.IV = pdb.GetBytes(encryptor.BlockSize / 8);
+
+                    using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                    {
+                        using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
+                        {
+
+                            using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                            {
+                                int data;
+                                while ((data = cs.ReadByte()) != -1)
+                                {
+                                    fsOutput.WriteByte((byte)data);
+                                }
+
+                            }
+                        }
+                        isFileDecrypted = true;
+                        return isFileDecrypted;
+                    }
+
+                }
+                
+            }
+            catch
+            {
+                //MessageBox.Show("File is Decypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return isFileDecrypted;
+            }
+
             
         }
 
@@ -297,46 +364,49 @@ namespace Crypyography
         
         private void btnProceed_Click(object sender, EventArgs e)
         {
-            
-            if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
+            try
             {
-                if (cboxOption.SelectedIndex == 0) //encryption tab
+                if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
                 {
-                    txtFilePathEn.Text = lblChoosenFile.Text;
-                    if(rbFile.Checked == true)
+                    if (cboxOption.SelectedIndex == 0) //encryption tab
                     {
-                        txtFileEnContent.Text = File.ReadAllText(fileToOpen.FileName);
-                        
-                    }
-                    else if(rbPhoto.Checked == true)
-                    {
-                        // disable the txtFileEn textbox
-                        //show a picturebox with the image
-                        photoBoxEn.Visible = true;
-                        //fileToOpen.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp)";
-                
-                        // display image in picture box  
-                        photoBoxEn.Image = new Bitmap(fileToOpen.FileName);
-                        
-                    }
-                    else if (rbRar.Checked == true)
-                    {
-                        txtFileEnContent.Text = "Rar file";
-                        
-                    }
-                    tControl.SelectedTab = Encrypt;
-                    Encrypt.Show();
+                        txtFilePathEn.Text = lblSelectedFile.Text;
+                        if (rbFile.Checked == true)
+                        {
+                            photoBoxEn.Visible = false;
+                            txtFileEnContent.Text = File.ReadAllText(fileToOpen.FileName);
+                        }
+                        else if (rbPhoto.Checked == true)
+                        {
+                            photoBoxEn.Visible = true;
+                            // display image in picture box  
+                            photoBoxEn.Image = new Bitmap(fileToOpen.FileName);
+                        }
+                        else if (rbRar.Checked == true)
+                        {
+                            photoBoxEn.Visible = false;
+                            txtFileEnContent.Text = "Rar file";
 
-                }
-                else if (cboxOption.SelectedIndex == 1) //decryption tab
-                {
-                    txtFilePathDe.Text = lblChoosenFile.Text;
-                    //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
-                    //Show the decrypted file
-                    tControl.SelectedTab = Decrypt;
-                    Decrypt.Show();
+                        }
+                        tControl.SelectedTab = Encrypt;
+                        Encrypt.Show();
+
+                    }
+                    else if (cboxOption.SelectedIndex == 1) //decryption tab
+                    {
+                        txtFilePathDe.Text = lblSelectedFile.Text;
+                        //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
+                        //Show the decrypted file
+                        tControl.SelectedTab = Decrypt;
+                        Decrypt.Show();
+                    }
                 }
             }
+            catch (Exception invalidAttachmentType)
+            {
+                MessageBox.Show("Check correct attachement type","Invalid attachement type", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            
         }
 
         private void cboxOption_SelectedIndexChanged(object sender, EventArgs e)
@@ -352,8 +422,9 @@ namespace Crypyography
             if (cboxDeleteEn.Checked == true)
             {
                 deleteAfter(fPath);
- 
             }
+            cleanTabOne();
+            ChooseFile.Show();
         }
 
         private void btnDoneDe_Click(object sender, EventArgs e)
@@ -364,6 +435,8 @@ namespace Crypyography
                 deleteAfter(fPath);
 
             }
+            cleanTabOne();
+            ChooseFile.Show();
         }
 
         private void Decrypt_Click(object sender, EventArgs e)
@@ -375,7 +448,35 @@ namespace Crypyography
         {
             //call the decryption method/function
             //saveFile();
-            cboxDeleteDe.Enabled = true;
+            //Register validateKey = new Register();
+            //bool isKeySame = Register.validatePassword(txtKeyEn.Text, txtRepeatKeyEn.Text);
+            try
+            {
+                if (txtKeyDe.Text != "")
+                {
+                    string fileName = txtFilePathDe.Text;
+                    string fileExtension = Path.GetExtension(txtFilePathDe.Text); // extension of the filePath
+                    //string input = fileName + fileExtension; // original filePath + the extension
+                    string output = fileName + "_dec" + fileExtension; // the new encrypted file path
+                    bool isDecoded = this.Decode(fileName, output); // encode file and save it as output
+
+                    if (isDecoded == true)
+                    {
+                        MessageBox.Show("File is Decrypted", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblDe.Text = output;
+                        cboxDeleteDe.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("File not Decrypted", "The file did not get decrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void browseEn_Click(object sender, EventArgs e)
@@ -404,9 +505,6 @@ namespace Crypyography
                         MessageBox.Show("User Id not found", "Id not found", MessageBoxButtons.OK,MessageBoxIcon.Error);
                         txtUserDeleteId.Focus();
                     }
-
-
-
 
                     cmd.Dispose();
                     con.Close();
@@ -494,7 +592,7 @@ namespace Crypyography
             txtFileEnContent.Clear();
             txtKeyEn.Clear();
             txtRepeatKeyEn.Clear();
-            lblEn.Text = "";
+            lblEn.Text = "...";
             photoBoxEn.Visible = false;
             tControl.SelectedTab = ChooseFile;
             ChooseFile.Show();
@@ -505,6 +603,8 @@ namespace Crypyography
         {
             txtFilePathDe.Clear();
             txtFileDe.Clear();
+            txtKeyDe.Clear();
+            lblDe.Text = "...";
             tControl.SelectedTab = ChooseFile;
             ChooseFile.Show();
         }
@@ -519,7 +619,7 @@ namespace Crypyography
                 {
                     string fileName = txtFilePathEn.Text;
                     string fileExtension = Path.GetExtension(txtFilePathEn.Text); // extension of the filePath
-                    string input = fileName + fileExtension; // original filePath + the extension
+                    //string input = fileName; // original filePath + the extension
                     string output = fileName + "_enc" + fileExtension; // the new encrypted file path
                     bool isEncypted = this.Encode(fileName, output); // encode file and save it as output
 
@@ -531,19 +631,29 @@ namespace Crypyography
                     }
                     else
                     {
-                        MessageBox.Show("File not Encoded", "The did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File not Encrypted", "The file did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                
             }
-            catch(IOException ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+
+            }
+            //catch(IOException ex)
+            //{
+               // MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //} 
         }
 
         private void lblChoosenFile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            cleanTabOne();
         }
     }
 }

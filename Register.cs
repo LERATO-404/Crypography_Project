@@ -80,7 +80,7 @@ namespace Crypyography
             }
         }
 
-        public static string generateString()
+        public static string generateString() // returns three characters //concatinate the chars to the key if its already taken (recommendation)
         {
             string aphal = "abcdefghijklmnopqrstuvwxyz0123456789";
             string ran = "";
