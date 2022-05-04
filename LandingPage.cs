@@ -35,6 +35,7 @@ namespace Crypyography
             cboxDeleteDe.Enabled = false;
             rbFolder.Visible = false;
             photoBoxEn.Visible = false;
+            photoBoxDe.Visible = false;
             lblUserCount.Text = "0";
             tControl.TabPages.Remove(Admin);
         }
@@ -96,6 +97,29 @@ namespace Crypyography
             rbPhoto.Checked = false;
             rbRar.Checked = false;
             lblSelectedFile.Text = "No file Selected";
+        }
+
+        public  void cleanTabTwo()
+        {
+            txtFilePathEn.Clear();
+            txtFileEnContent.Clear();
+            txtKeyEn.Clear();
+            txtRepeatKeyEn.Clear();
+            lblEn.Text = "...";
+            photoBoxEn.Visible = false;
+            tControl.SelectedTab = ChooseFile;
+            ChooseFile.Show();
+        }
+
+        public void cleanTabThree()
+        {
+            txtFilePathDe.Clear();
+            txtFileDe.Clear();
+            txtKeyDe.Clear();
+            lblDe.Text = "...";
+            photoBoxDe.Visible = false;
+            tControl.SelectedTab = ChooseFile;
+            ChooseFile.Show();
         }
 
         private void enableChoose()
@@ -424,6 +448,7 @@ namespace Crypyography
                 deleteAfter(fPath);
             }
             cleanTabOne();
+            cleanTabTwo();
             ChooseFile.Show();
         }
 
@@ -436,6 +461,7 @@ namespace Crypyography
 
             }
             cleanTabOne();
+            cleanTabThree();
             ChooseFile.Show();
         }
 
@@ -464,6 +490,26 @@ namespace Crypyography
                     {
                         MessageBox.Show("File is Decrypted", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         lblDe.Text = output;
+                        if (rbFile.Checked == true)
+                        {
+                            photoBoxDe.Visible = false;
+                            txtFileDe.Text = File.ReadAllText(lblDe.Text);
+                        }
+                        else if (rbRar.Checked == true)
+                        {
+                            photoBoxDe.Visible = false;
+                            txtFileDe.Text = "Rar File";
+                        }   
+                        else if (rbPhoto.Checked == true)
+                        {
+                            photoBoxDe.Visible = true;
+                            // display image in picture box 
+                            photoBoxDe.Image = new Bitmap(lblDe.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please check the correct attachement type", "Incorrect Attachement Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                         cboxDeleteDe.Enabled = true;
                     }
                     else
@@ -588,25 +634,13 @@ namespace Crypyography
 
         private void btnCancelEn_Click(object sender, EventArgs e)
         {
-            txtFilePathEn.Clear();
-            txtFileEnContent.Clear();
-            txtKeyEn.Clear();
-            txtRepeatKeyEn.Clear();
-            lblEn.Text = "...";
-            photoBoxEn.Visible = false;
-            tControl.SelectedTab = ChooseFile;
-            ChooseFile.Show();
+            cleanTabTwo();
 
         }
 
         private void btnCancelDe_Click(object sender, EventArgs e)
         {
-            txtFilePathDe.Clear();
-            txtFileDe.Clear();
-            txtKeyDe.Clear();
-            lblDe.Text = "...";
-            tControl.SelectedTab = ChooseFile;
-            ChooseFile.Show();
+            cleanTabThree();
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)

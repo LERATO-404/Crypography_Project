@@ -88,6 +88,7 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.photoBoxDe = new System.Windows.Forms.PictureBox();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -101,6 +102,7 @@ namespace Crypyography
             this.Admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxDe)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -579,6 +581,7 @@ namespace Crypyography
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.photoBoxDe);
             this.groupBox2.Controls.Add(this.txtFileDe);
             this.groupBox2.Controls.Add(this.txtFilePathDe);
             this.groupBox2.Controls.Add(this.label8);
@@ -731,6 +734,14 @@ namespace Crypyography
             this.label12.TabIndex = 3;
             this.label12.Text = "Registered users:";
             // 
+            // photoBoxDe
+            // 
+            this.photoBoxDe.Location = new System.Drawing.Point(35, 109);
+            this.photoBoxDe.Name = "photoBoxDe";
+            this.photoBoxDe.Size = new System.Drawing.Size(286, 232);
+            this.photoBoxDe.TabIndex = 12;
+            this.photoBoxDe.TabStop = false;
+            // 
             // LandingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -760,6 +771,7 @@ namespace Crypyography
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDelete)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBoxDe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -825,5 +837,6 @@ namespace Crypyography
         private System.Windows.Forms.Label lblLogOff;
         private System.Windows.Forms.PictureBox photoBoxEn;
         private System.Windows.Forms.Button btnEncrypt;
+        private System.Windows.Forms.PictureBox photoBoxDe;
     }
 }
