@@ -64,6 +64,12 @@ namespace Crypyography
 
         /*======================Methods================================*/
 
+
+        
+
+
+
+
         public static string encryptPassword(string pass)
         {
             try

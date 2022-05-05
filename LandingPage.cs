@@ -45,12 +45,8 @@ namespace Crypyography
             string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
             C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
             con = new SqlConnection(conString);
-            
-
 
         }
-
-      
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -146,7 +142,7 @@ namespace Crypyography
             fileToOpen = new OpenFileDialog();
             fileToOpen.Title = "Select File";
             fileToOpen.InitialDirectory = @"C:\";
-            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)| *.jpg; *.jpeg; *.gif; *.png; *.bmp)|PDF Documents (.pdf)|*.pdf|ZIP|*.zip|RAR|*.rar";
+            fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)| *.jpg; *.jpeg; *.gif; *.png; *.bmp)|RAR|*.rar";
             fileToOpen.FilterIndex = 2;
             fileToOpen.ShowDialog();
 
@@ -261,6 +257,48 @@ namespace Crypyography
             }
         }
 
+        public string attachementTypeSelected()
+        {
+            string attachedType = "other";
+            if (rbFile.Checked)
+            {
+                attachedType = "Text File";
+            }
+            else if (rbPhoto.Checked) { 
+                attachedType = "Photo";
+            }
+            else if (rbRar.Checked) {
+                attachedType = "Rar File"; 
+            }
+            return attachedType;
+        }
+
+
+        public void insertUserKey()
+        {
+            if (con.State != ConnectionState.Open)
+                con.Open();
+
+            string sql = @"INSERT INTO [userKey](attachementName,attachementType,key) VALUES(@attachementName,@attachementType,@key)";
+
+            
+            cmd = new SqlCommand(sql, con);
+
+            //cmd.Parameters.AddWithValue("@KeyId", txtFirstName.Text); // generated id
+            //cmd.Parameters.AddWithValue("@userId", txtLastName.Text); // id of the user logged in
+            cmd.Parameters.AddWithValue("@attachementName", txtFilePathEn.Text);
+            cmd.Parameters.AddWithValue("@attachementType", attachementTypeSelected());
+            cmd.Parameters.AddWithValue("@key ", txtKeyEn.Text);
+
+            cmd.ExecuteNonQuery();
+            //MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //clearAll();
+
+
+            if (con.State == ConnectionState.Open)
+                con.Close();
+        }
+
 
 
 
@@ -285,7 +323,7 @@ namespace Crypyography
                     {
                         using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
                         {
-                            //if(rbFile.Checked == true)
+                            
                             using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
                             {
                                 int data;
@@ -691,7 +729,7 @@ namespace Crypyography
                     }
                     else
                     {
-                        MessageBox.Show("File not Encrypted", "Please select the correct file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File not Encrypted", "Failed to Encrypt the file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 
