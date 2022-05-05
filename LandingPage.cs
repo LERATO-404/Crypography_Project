@@ -97,6 +97,8 @@ namespace Crypyography
             rbPhoto.Checked = false;
             rbRar.Checked = false;
             lblSelectedFile.Text = "No file Selected";
+            btnProceed.Enabled = false;
+            
         }
 
         public  void cleanTabTwo()
@@ -270,8 +272,6 @@ namespace Crypyography
                 string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
                 byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
                 
-
-
                 using (Aes encryptor = Aes.Create())
                 {
                     encryptor.KeySize = 256;
@@ -295,10 +295,11 @@ namespace Crypyography
                                 }
                             }
                         }
-                        isFileEncrypted = true;
-                        return isFileEncrypted;
+                       
                     }
+                    isFileEncrypted = true;
                 }
+                return isFileEncrypted;
 
             }
             catch 
@@ -331,7 +332,7 @@ namespace Crypyography
                     {
                         using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-
+                           
                             using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
                             {
                                 int data;
@@ -339,15 +340,14 @@ namespace Crypyography
                                 {
                                     fsOutput.WriteByte((byte)data);
                                 }
-
                             }
                         }
-                        isFileDecrypted = true;
-                        return isFileDecrypted;
+ 
                     }
-
+                    isFileDecrypted = true;
                 }
-                
+                return isFileDecrypted;
+
             }
             catch
             {
@@ -392,43 +392,67 @@ namespace Crypyography
             {
                 if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
                 {
-                    if (cboxOption.SelectedIndex == 0) //encryption tab
+
+                    if (cboxOption.SelectedIndex == 0 && !(lblSelectedFile.Text.Contains("_enc")) && !(lblSelectedFile.Text.Contains("_dec"))) //encryption tab
                     {
                         txtFilePathEn.Text = lblSelectedFile.Text;
-                        if (rbFile.Checked == true)
+                        if (rbFile.Checked == true && (lblSelectedFile.Text.Contains(".txt")))
                         {
                             photoBoxEn.Visible = false;
                             txtFileEnContent.Text = File.ReadAllText(fileToOpen.FileName);
+                            tControl.SelectedTab = Encrypt;
+                            Encrypt.Show();
+
                         }
                         else if (rbPhoto.Checked == true)
                         {
                             photoBoxEn.Visible = true;
                             // display image in picture box  
                             photoBoxEn.Image = new Bitmap(fileToOpen.FileName);
+                            tControl.SelectedTab = Encrypt;
+                            Encrypt.Show();
+
                         }
-                        else if (rbRar.Checked == true)
+                        else if (rbRar.Checked == true && (lblSelectedFile.Text.Contains(".rar")))
                         {
                             photoBoxEn.Visible = false;
                             txtFileEnContent.Text = "Rar file";
+                            tControl.SelectedTab = Encrypt;
+                            Encrypt.Show();
 
                         }
-                        tControl.SelectedTab = Encrypt;
-                        Encrypt.Show();
+                        else
+                        {
+                            MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        
+
 
                     }
-                    else if (cboxOption.SelectedIndex == 1) //decryption tab
+                    else if (cboxOption.SelectedIndex == 1 && lblSelectedFile.Text.Contains("_enc")) //decryption tab
                     {
                         txtFilePathDe.Text = lblSelectedFile.Text;
                         //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
                         //Show the decrypted file
+                        // code in button decryp in the decrypt tab
                         tControl.SelectedTab = Decrypt;
                         Decrypt.Show();
                     }
+                    else
+                    {
+                        MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an Attachement Type and Choose a file", "Attachement Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   
                 }
             }
             catch (Exception invalidAttachmentType)
             {
-                MessageBox.Show("Check correct attachement type","Invalid attachement type", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -480,6 +504,7 @@ namespace Crypyography
             {
                 if (txtKeyDe.Text != "")
                 {
+                    
                     string fileName = txtFilePathDe.Text;
                     string fileExtension = Path.GetExtension(txtFilePathDe.Text); // extension of the filePath
                     //string input = fileName + fileExtension; // original filePath + the extension
@@ -512,12 +537,13 @@ namespace Crypyography
                         }
                         cboxDeleteDe.Enabled = true;
                     }
-                    else
-                    {
-                        MessageBox.Show("File not Decrypted", "The file did not get decrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-                
+                else
+                {
+                    
+                    MessageBox.Show("File not Decrypted", "The file did not get decrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             catch (IOException ex)
             {
@@ -665,7 +691,7 @@ namespace Crypyography
                     }
                     else
                     {
-                        MessageBox.Show("File not Encrypted", "The file did not get encrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File not Encrypted", "Please select the correct file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 
