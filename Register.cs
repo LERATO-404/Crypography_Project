@@ -23,7 +23,7 @@ namespace Crypyography
         //True";
         SqlConnection con;
         SqlCommand cmd;
-        private static Random rand;
+        
 
 
 
@@ -86,20 +86,7 @@ namespace Crypyography
             }
         }
 
-        public static string generateString() // returns three characters //concatinate the chars to the key if its already taken (recommendation)
-        {
-            string aphal = "abcdefghijklmnopqrstuvwxyz0123456789";
-            string ran = "";
-
-            rand = new Random();
-            for(int i=0; i < 3; i++)
-            {
-                int randAlph = rand.Next(36);
-                ran += aphal.ElementAt(randAlph);
-            }
-
-            return ran;
-        }
+       
 
         public static string decryptPassword(string encodedData)
         {
@@ -133,7 +120,7 @@ namespace Crypyography
                 }
                 else
                 {
-                    MessageBox.Show("Entererd Password/key doesn not match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
+                    MessageBox.Show("The Entererd Password/key does not match!.. Please Check..", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);  //showing the error message if password and confirm password doesn't match  
                 }
 
             }else{

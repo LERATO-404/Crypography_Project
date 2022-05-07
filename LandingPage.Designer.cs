@@ -39,6 +39,8 @@ namespace Crypyography
             this.btnCancel = new System.Windows.Forms.Button();
             this.tControl = new System.Windows.Forms.TabControl();
             this.ChooseFile = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.lblLogOff = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rbPhoto = new System.Windows.Forms.RadioButton();
@@ -82,17 +84,16 @@ namespace Crypyography
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridViewDelete = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cBoxShowDatabase = new System.Windows.Forms.ComboBox();
             this.txtUserDeleteId = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.cBoxShowDatabase = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblsuggesstions = new System.Windows.Forms.Label();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -213,6 +214,24 @@ namespace Crypyography
             this.ChooseFile.Size = new System.Drawing.Size(744, 402);
             this.ChooseFile.TabIndex = 0;
             this.ChooseFile.Text = "Choose File";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(535, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 13);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Welcome,";
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(596, 9);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(53, 13);
+            this.lblWelcome.TabIndex = 14;
+            this.lblWelcome.Text = "username";
             // 
             // lblLogOff
             // 
@@ -408,6 +427,7 @@ namespace Crypyography
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblsuggesstions);
             this.groupBox1.Controls.Add(this.btnEncrypt);
             this.groupBox1.Controls.Add(this.lblEn);
             this.groupBox1.Controls.Add(this.txtRepeatKeyEn);
@@ -682,6 +702,28 @@ namespace Crypyography
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(151, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Choose the database to show:";
+            // 
+            // cBoxShowDatabase
+            // 
+            this.cBoxShowDatabase.FormattingEnabled = true;
+            this.cBoxShowDatabase.Items.AddRange(new object[] {
+            "Choose Option",
+            "AllUsers",
+            "AllEncryptedFiles"});
+            this.cBoxShowDatabase.Location = new System.Drawing.Point(165, 22);
+            this.cBoxShowDatabase.Name = "cBoxShowDatabase";
+            this.cBoxShowDatabase.Size = new System.Drawing.Size(121, 21);
+            this.cBoxShowDatabase.TabIndex = 9;
+            this.cBoxShowDatabase.SelectedIndexChanged += new System.EventHandler(this.cBoxShowDatabase_SelectedIndexChanged);
+            // 
             // txtUserDeleteId
             // 
             this.txtUserDeleteId.Location = new System.Drawing.Point(165, 78);
@@ -733,15 +775,6 @@ namespace Crypyography
             this.label13.TabIndex = 4;
             this.label13.Text = "Enter Id:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Database Management";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -751,45 +784,23 @@ namespace Crypyography
             this.label12.TabIndex = 3;
             this.label12.Text = "Available records:";
             // 
-            // cBoxShowDatabase
+            // label3
             // 
-            this.cBoxShowDatabase.FormattingEnabled = true;
-            this.cBoxShowDatabase.Items.AddRange(new object[] {
-            "Choose Option",
-            "AllUsers",
-            "AllEncryptedFiles"});
-            this.cBoxShowDatabase.Location = new System.Drawing.Point(165, 22);
-            this.cBoxShowDatabase.Name = "cBoxShowDatabase";
-            this.cBoxShowDatabase.Size = new System.Drawing.Size(121, 21);
-            this.cBoxShowDatabase.TabIndex = 9;
-            this.cBoxShowDatabase.SelectedIndexChanged += new System.EventHandler(this.cBoxShowDatabase_SelectedIndexChanged);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Database Management";
             // 
-            // label9
+            // lblsuggesstions
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(151, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Choose the database to show:";
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(596, 9);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(53, 13);
-            this.lblWelcome.TabIndex = 14;
-            this.lblWelcome.Text = "username";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(535, 9);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(55, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Welcome,";
+            this.lblsuggesstions.AutoSize = true;
+            this.lblsuggesstions.Location = new System.Drawing.Point(108, 134);
+            this.lblsuggesstions.Name = "lblsuggesstions";
+            this.lblsuggesstions.Size = new System.Drawing.Size(68, 13);
+            this.lblsuggesstions.TabIndex = 14;
+            this.lblsuggesstions.Text = "suggesstions";
             // 
             // LandingPage
             // 
@@ -892,5 +903,6 @@ namespace Crypyography
         private System.Windows.Forms.ComboBox cBoxShowDatabase;
         public System.Windows.Forms.Label lblWelcome;
         public System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblsuggesstions;
     }
 }

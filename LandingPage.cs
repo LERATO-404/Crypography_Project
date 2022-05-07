@@ -24,6 +24,7 @@ namespace Crypyography
         SqlCommand cmd;
         SqlDataAdapter adapt;
         DataSet ds;
+        SqlDataReader myReader;
         string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
             C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
 
@@ -40,6 +41,7 @@ namespace Crypyography
             photoBoxDe.Visible = false;
             btnSearch.Enabled = false;
             dataGridViewDelete.Visible = false;
+            lblsuggesstions.Visible = false;
             lblRecordsCount.Text = "0";
 
             
@@ -171,7 +173,7 @@ namespace Crypyography
                 {
                     
                     lblSelectedFile.Text = folderToOpen.SelectedPath;
-                    //txtFilePathDe.Text = lblChoosenFile.Text;
+                   
                 }
                 else
                 {
@@ -241,8 +243,22 @@ namespace Crypyography
             }
         }
 
+        public static string generateString() // returns three characters //concatinate the chars to the key if its already taken (recommendation)
+        {
+            string aphal = "abcdefghijklmnopqrstuvwxyz0123456789";
+            string ran = "";
 
-       
+            Random rand = new Random();
+            for (int i = 0; i < 3; i++)
+            {
+                int randAlph = rand.Next(36);
+                ran += aphal.ElementAt(randAlph);
+            }
+
+            return ran;
+        }
+
+
 
         public int userCount()
         {
@@ -310,11 +326,9 @@ namespace Crypyography
                 return loginID;  
         }
 
-
-
-        public void insertUserKey(int id, string  path, string attachedType, string keyEntered)
+        public bool insertUserKey(int id, string  path, string attachedType, string keyEntered)
         {
-            //if (con.State != ConnectionState.Open)
+            
             
             string query = @"INSERT INTO [userKey]([userId],[attachementName],[attachementType],[key]) VALUES(@userId, @attachementName, @attachementType, @key)";
             using (var con = new SqlConnection(conString))
@@ -327,26 +341,30 @@ namespace Crypyography
                     cmd.Parameters.AddWithValue("@key", keyEntered);
                     try
                     {
-                   
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
-                    
-                        MessageBox.Show("Records Inserted Successfully");
+                        return true;
                     }
                     catch (SqlException err)
                     {
-                        MessageBox.Show("Records not Inserted"+err);
-                        // Error occured. Handle error
+                        
+                        lblsuggesstions.Visible = true;
+                        lblsuggesstions.Text = "Suggested Key:"+ txtRepeatKeyEn.Text + generateString();
+                        txtKeyEn.Clear();
+                        txtRepeatKeyEn.Clear();
+                        txtKeyEn.Focus();
+                        return false;   
                     }
                 }   
         }
-        private bool Encode(string inputFilePath, string outputfilePath)
+        private bool Encode(string inputFilePath, string outputfilePath, string EncryptionKey)
         {
             bool isFileEncrypted = false;
             try
             {
-                string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
+                //string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
+                //string EncryptionKey = txtRepeatKeyEn.Text; //include key in as the parameter
                 byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
                 
                 using (Aes encryptor = Aes.Create())
@@ -374,7 +392,13 @@ namespace Crypyography
                         }
                        
                     }
-                    isFileEncrypted = true;
+                    string fileSelectedName = Path.GetFileName(inputFilePath);
+                    bool isInserted = insertUserKey(getUserId(), fileSelectedName, attachementTypeSelected(), EncryptionKey);
+                    if(isInserted == true)
+                    {
+                        isFileEncrypted = true;
+                    }
+                        
                 }
                 return isFileEncrypted;
 
@@ -389,12 +413,11 @@ namespace Crypyography
             
         }
 
-        private bool Decode(string inputFilePath, string outputfilePath)
+        private bool Decode(string inputFilePath, string outputfilePath, string EncryptionKey)
         {
             bool isFileDecrypted = false;
             try
             {
-                string EncryptionKey = "MAKV2SPBNI99212";
                 byte[] saltB = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
                 using (Aes encryptor = Aes.Create())
                 {
@@ -409,7 +432,7 @@ namespace Crypyography
                     {
                         using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                           
+
                             using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
                             {
                                 int data;
@@ -419,27 +442,19 @@ namespace Crypyography
                                 }
                             }
                         }
- 
+
                     }
                     isFileDecrypted = true;
                 }
                 return isFileDecrypted;
-
             }
-            catch
+            catch(CryptographicException cryptoerr)
             {
-                //MessageBox.Show("File is Decypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return isFileDecrypted;
-            }
-
-            
+                MessageBox.Show("Incorrect decryption key","Incorrect Key",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+            } 
+            //string EncryptionKey = "MAKV2SPBNI99212";         
         }
-
-
-
-
-
-
 
         /*------------------Methods-------------------*/
         private void button1_Click(object sender, EventArgs e)
@@ -509,9 +524,6 @@ namespace Crypyography
                     else if (cboxOption.SelectedIndex == 2 && lblSelectedFile.Text.Contains("_enc")) //decryption tab
                     {
                         txtFilePathDe.Text = lblSelectedFile.Text;
-                        //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
-                        //Show the decrypted file
-                        // code in button decryp in the decrypt tab
                         tControl.SelectedTab = Decrypt;
                         Decrypt.Show();
                     }
@@ -547,8 +559,7 @@ namespace Crypyography
             {
                 deleteAfter(fPath);
             }
-            string fileSelectedName = Path.GetFileName(fPath);
-            insertUserKey(getUserId(), fileSelectedName, attachementTypeSelected(), txtRepeatKeyEn.Text);
+            
             cleanTabOne();
             cleanTabTwo();
             ChooseFile.Show();
@@ -574,52 +585,51 @@ namespace Crypyography
 
         private void browseDe_Click(object sender, EventArgs e)
         {
-            //call the decryption method/function
-            //saveFile();
-            //Register validateKey = new Register();
-            //bool isKeySame = Register.validatePassword(txtKeyEn.Text, txtRepeatKeyEn.Text);
             try
             {
                 if (txtKeyDe.Text != "")
                 {
                     
-                    string fileName = txtFilePathDe.Text;
-                    string fileExtension = Path.GetExtension(txtFilePathDe.Text); // extension of the filePath
-                    //string input = fileName + fileExtension; // original filePath + the extension
-                    string output = fileName + "_dec" + fileExtension; // the new encrypted file path
-                    bool isDecoded = this.Decode(fileName, output); // encode file and save it as output
+                        string fileName = txtFilePathDe.Text;
+                        string fileExtension = Path.GetExtension(txtFilePathDe.Text); // extension of the filePath
+                        //string input = fileName + fileExtension; // original filePath + the extension
+                        string output = fileName + "_dec" + fileExtension; // the new encrypted file path
 
-                    if (isDecoded == true)
-                    {
-                        MessageBox.Show("File is Decrypted", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        lblDe.Text = output;
-                        if (rbFile.Checked == true)
+
+                    
+                        bool isDecoded = this.Decode(fileName, output, txtKeyDe.Text); // encode file and save it as output
+                        if (isDecoded == true)
                         {
-                            photoBoxDe.Visible = false;
-                            txtFileDe.Text = File.ReadAllText(lblDe.Text);
+                            MessageBox.Show("File is Decrypted", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            lblDe.Text = output;
+                            if (rbFile.Checked == true)
+                            {
+                                photoBoxDe.Visible = false;
+                                txtFileDe.Text = File.ReadAllText(lblDe.Text);
+                            }
+                            else if (rbRar.Checked == true)
+                            {
+                                photoBoxDe.Visible = false;
+                                txtFileDe.Text = "Rar File";
+                            }
+                            else if (rbPhoto.Checked == true)
+                            {
+                                photoBoxDe.Visible = true;
+                                // display image in picture box 
+                                photoBoxDe.Image = new Bitmap(lblDe.Text);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please check the correct attachement type", "Incorrect Attachement Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            cboxDeleteDe.Enabled = true;
                         }
-                        else if (rbRar.Checked == true)
-                        {
-                            photoBoxDe.Visible = false;
-                            txtFileDe.Text = "Rar File";
-                        }   
-                        else if (rbPhoto.Checked == true)
-                        {
-                            photoBoxDe.Visible = true;
-                            // display image in picture box 
-                            photoBoxDe.Image = new Bitmap(lblDe.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please check the correct attachement type", "Incorrect Attachement Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        cboxDeleteDe.Enabled = true;
-                    }
+                    
                 }
                 else
                 {
-                    
-                    MessageBox.Show("File not Decrypted", "The file did not get decrypted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+                    MessageBox.Show("Please enter key to decrypt the file", "Failed to decrypt", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -800,20 +810,19 @@ namespace Crypyography
             {
                 if (txtKeyEn.Text != "" && txtRepeatKeyEn.Text != "" && (isKeySame == true))
                 {
+                    
                     string fileName = txtFilePathEn.Text;
                     string fileExtension = Path.GetExtension(txtFilePathEn.Text); // extension of the filePath
                     //string input = fileName; // original filePath + the extension
                     string output = fileName + "_enc" + fileExtension; // the new encrypted file path
-                    bool isEncypted = this.Encode(fileName, output); // encode file and save it as output
-
+                    bool isEncypted = this.Encode(fileName, output, txtRepeatKeyEn.Text); // encode file and save it as output
+                    
                     if (isEncypted == true)
                     {
                         lblEn.Text = output;
                         cboxDeleteEn.Enabled = true;
-                        MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //insertUserKey(getUserId(), txtFilePathEn.Text, attachementTypeSelected(), txtRepeatKeyEn.Text);
+                        MessageBox.Show("File is Encypted Successfully", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
-
                     }
                     else
                     {
@@ -826,10 +835,6 @@ namespace Crypyography
             {
 
             }
-            //catch(IOException ex)
-            //{
-               // MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //} 
         }
 
         private void lblChoosenFile_Click(object sender, EventArgs e)
@@ -847,8 +852,7 @@ namespace Crypyography
         {
             if (cBoxShowDatabase.SelectedIndex == 1 || cBoxShowDatabase.SelectedIndex == 2)
                 btnSearch.Enabled = true;
-            //else
-                //MessageBox.Show("Please select the table you want to show","Select table",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        
         }
     }
 }

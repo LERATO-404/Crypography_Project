@@ -36,8 +36,8 @@ namespace Crypyography
             this.btnLogIn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblSignIn = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,7 @@ namespace Crypyography
             // 
             this.txtPasswordLog.Location = new System.Drawing.Point(63, 116);
             this.txtPasswordLog.Name = "txtPasswordLog";
-            this.txtPasswordLog.PasswordChar = '#';
+            this.txtPasswordLog.PasswordChar = '*';
             this.txtPasswordLog.Size = new System.Drawing.Size(162, 20);
             this.txtPasswordLog.TabIndex = 2;
             this.txtPasswordLog.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -114,15 +114,6 @@ namespace Crypyography
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Don\'t have an account?";
-            // 
             // lblSignIn
             // 
             this.lblSignIn.AutoSize = true;
@@ -134,6 +125,15 @@ namespace Crypyography
             this.lblSignIn.TabIndex = 6;
             this.lblSignIn.Text = "Sign up";
             this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(64, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Don\'t have an account?";
             // 
             // LogIn
             // 

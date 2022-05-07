@@ -88,8 +88,6 @@ namespace Crypyography
                     
                     if (txtPasswordLog.Text == decryptPassword(encryptPass))
                     {
-                        
-                        
                         cmd = new SqlCommand(query, con);
                         myReader = cmd.ExecuteReader();
                         if (myReader.HasRows)
