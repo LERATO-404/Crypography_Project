@@ -24,7 +24,9 @@ namespace Crypyography
         SqlCommand cmd;
         SqlDataAdapter adapt;
         DataSet ds;
-        
+        string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
+            C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
+
 
         public LandingPage()
         {
@@ -36,15 +38,19 @@ namespace Crypyography
             rbFolder.Visible = false;
             photoBoxEn.Visible = false;
             photoBoxDe.Visible = false;
-            lblUserCount.Text = "0";
+            btnSearch.Enabled = false;
+            dataGridViewDelete.Visible = false;
+            lblRecordsCount.Text = "0";
+
+            
             tControl.TabPages.Remove(Admin);
         }
 
         private void LandingPage_Load_1(object sender, EventArgs e)
         {
-            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
-            C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
+            
             con = new SqlConnection(conString);
+            
 
         }
 
@@ -131,7 +137,7 @@ namespace Crypyography
 
         private void enableProceed()
         {
-            if(cboxOption.SelectedIndex == 0 || cboxOption.SelectedIndex == 1)
+            if(cboxOption.SelectedIndex == 1 || cboxOption.SelectedIndex == 2)
             {
                 btnProceed.Enabled = true; 
             }
@@ -201,6 +207,8 @@ namespace Crypyography
             }
         }
 
+      
+
 
         public void saveFile()
         {
@@ -238,17 +246,32 @@ namespace Crypyography
 
         public int userCount()
         {
-            int usersAvailable = 0;
-            string sql = @"SELECT COUNT(*) FROM [user]";
+            
             try
             {
-                
-                using (cmd = new SqlCommand(sql, con))
-                {
-                    
-                    usersAvailable = (int)cmd.ExecuteScalar();
-                }
-                return usersAvailable;
+                int usersAvailable = 0;
+                string sqlUsers = @"SELECT COUNT(*) FROM [user]";
+                string sqlKeys = @"SELECT COUNT(*) FROM [userKey]";
+                using (var con = new SqlConnection(conString))
+                    if (cBoxShowDatabase.SelectedIndex == 1)
+                    {
+                        using (cmd = new SqlCommand(sqlUsers, con))
+                        {
+                            con.Open();
+                            usersAvailable = (int)cmd.ExecuteScalar();
+                            con.Close();
+                        }
+                    }
+                    else if (cBoxShowDatabase.SelectedIndex == 2)
+                    {
+                        using (cmd = new SqlCommand(sqlKeys, con))
+                        {
+                            con.Open();
+                            usersAvailable = (int)cmd.ExecuteScalar();
+                            con.Close();
+                        }
+                    }
+                    return usersAvailable;
                 
             }
             catch (Exception ex)
@@ -260,48 +283,64 @@ namespace Crypyography
         public string attachementTypeSelected()
         {
             string attachedType = "other";
-            if (rbFile.Checked)
+            if (rbFile.Checked == true)
             {
                 attachedType = "Text File";
             }
-            else if (rbPhoto.Checked) { 
+            else if (rbPhoto.Checked == true) { 
                 attachedType = "Photo";
             }
-            else if (rbRar.Checked) {
+            else if (rbRar.Checked == true) {
                 attachedType = "Rar File"; 
             }
             return attachedType;
         }
 
-
-        public void insertUserKey()
+        public int getUserId()
         {
-            if (con.State != ConnectionState.Open)
-                con.Open();
-
-            string sql = @"INSERT INTO [userKey](attachementName,attachementType,key) VALUES(@attachementName,@attachementType,@key)";
-
-            
-            cmd = new SqlCommand(sql, con);
-
-            //cmd.Parameters.AddWithValue("@KeyId", txtFirstName.Text); // generated id
-            //cmd.Parameters.AddWithValue("@userId", txtLastName.Text); // id of the user logged in
-            cmd.Parameters.AddWithValue("@attachementName", txtFilePathEn.Text);
-            cmd.Parameters.AddWithValue("@attachementType", attachementTypeSelected());
-            cmd.Parameters.AddWithValue("@key ", txtKeyEn.Text);
-
-            cmd.ExecuteNonQuery();
-            //MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //clearAll();
-
-
-            if (con.State == ConnectionState.Open)
-                con.Close();
+            string sqlId = @"SELECT * FROM [user] WHERE userName LIKE '" + lblWelcome.Text+ "'";
+            using (var con = new SqlConnection(conString))
+                adapt = new SqlDataAdapter();
+                ds = new DataSet();
+                cmd = new SqlCommand(sqlId, con);
+                adapt.SelectCommand = cmd;
+                adapt = new SqlDataAdapter(cmd);
+                adapt.Fill(ds);
+                int loginID = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+                return loginID;  
         }
 
 
 
-
+        public void insertUserKey(int id, string  path, string attachedType, string keyEntered)
+        {
+            //if (con.State != ConnectionState.Open)
+            
+            string query = @"INSERT INTO [userKey]([userId],[attachementName],[attachementType],[key]) VALUES(@userId, @attachementName, @attachementType, @key)";
+            using (var con = new SqlConnection(conString))
+                using (var cmd = new SqlCommand(query, con))
+                {
+              
+                    cmd.Parameters.AddWithValue("@userId", id); // id of the user logged in
+                    cmd.Parameters.AddWithValue("@attachementName", path);
+                    cmd.Parameters.AddWithValue("@attachementType", attachedType);
+                    cmd.Parameters.AddWithValue("@key", keyEntered);
+                    try
+                    {
+                   
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    
+                        MessageBox.Show("Records Inserted Successfully");
+                    }
+                    catch (SqlException err)
+                    {
+                        MessageBox.Show("Records not Inserted"+err);
+                        // Error occured. Handle error
+                    }
+                }   
+        }
         private bool Encode(string inputFilePath, string outputfilePath)
         {
             bool isFileEncrypted = false;
@@ -408,7 +447,7 @@ namespace Crypyography
             
             try
             {
-                
+              
                 attachementType();
             }
             catch (FileNotFoundException ex1)
@@ -431,7 +470,7 @@ namespace Crypyography
                 if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
                 {
 
-                    if (cboxOption.SelectedIndex == 0 && !(lblSelectedFile.Text.Contains("_enc")) && !(lblSelectedFile.Text.Contains("_dec"))) //encryption tab
+                    if (cboxOption.SelectedIndex == 1 && !(lblSelectedFile.Text.Contains("_enc")) && !(lblSelectedFile.Text.Contains("_dec"))) //encryption tab
                     {
                         txtFilePathEn.Text = lblSelectedFile.Text;
                         if (rbFile.Checked == true && (lblSelectedFile.Text.Contains(".txt")))
@@ -467,7 +506,7 @@ namespace Crypyography
 
 
                     }
-                    else if (cboxOption.SelectedIndex == 1 && lblSelectedFile.Text.Contains("_enc")) //decryption tab
+                    else if (cboxOption.SelectedIndex == 2 && lblSelectedFile.Text.Contains("_enc")) //decryption tab
                     {
                         txtFilePathDe.Text = lblSelectedFile.Text;
                         //txtFileDe.Text = File.ReadAllText(fileToOpen.FileName); 
@@ -497,7 +536,6 @@ namespace Crypyography
 
         private void cboxOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             enableProceed();
         }
 
@@ -509,6 +547,8 @@ namespace Crypyography
             {
                 deleteAfter(fPath);
             }
+            string fileSelectedName = Path.GetFileName(fPath);
+            insertUserKey(getUserId(), fileSelectedName, attachementTypeSelected(), txtRepeatKeyEn.Text);
             cleanTabOne();
             cleanTabTwo();
             ChooseFile.Show();
@@ -598,30 +638,40 @@ namespace Crypyography
         {
             try
             {
+
                 if (txtUserDeleteId.Text != "")
                 {
-                    con.Open();
-                    adapt = new SqlDataAdapter();
-                    string sqlDelete = "DELETE [user] WHERE Id='" + txtUserDeleteId.Text + "'";
-                    cmd = new SqlCommand();
-
-                    adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
-                    int deleteUser = adapt.DeleteCommand.ExecuteNonQuery();
-
-                    if (deleteUser > 0) { 
-                        MessageBox.Show("User Removed", "user removed", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                    }
-                    else { 
-                        MessageBox.Show("User Id not found", "Id not found", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        txtUserDeleteId.Focus();
-                    }
-
-                    cmd.Dispose();
-                    con.Close();
+                    using (var con = new SqlConnection(conString))
+                        
+                        using (adapt = new SqlDataAdapter()) {
+                            string sqlDelete = "";
+                            if (cBoxShowDatabase.SelectedIndex == 1)
+                            {
+                                sqlDelete = "DELETE [user] WHERE Id='" + txtUserDeleteId.Text + "'";
+                            }
+                            else if (cBoxShowDatabase.SelectedIndex == 2)
+                            {
+                                sqlDelete = "DELETE [userKey] WHERE KeyId='" + txtUserDeleteId.Text + "'";
+                            }
+                            adapt.DeleteCommand = new SqlCommand(sqlDelete, con);
+                            con.Open();
+                            int deleteRecord = adapt.DeleteCommand.ExecuteNonQuery();
+                            con.Close();
+                            if (deleteRecord > 0)
+                            {
+                                MessageBox.Show("Id Removed", "Id removed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Id not found", "Id not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtUserDeleteId.Focus();
+                            }
+                        }
+                        cmd.Dispose();
                 }
                 else
                 {
-                    MessageBox.Show("Enter user id", "User Id not entered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Enter id", "Id not entered", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUserDeleteId.Focus();
                 }
                 
@@ -642,21 +692,52 @@ namespace Crypyography
         {
             try
             {
+                dataGridViewDelete.Visible = true;
+                if (cBoxShowDatabase.SelectedIndex == 0) // users
+                {
+                    dataGridViewDelete.Visible = false;
+                    //btnSearch.Enabled = true;
+                }
+                else if (cBoxShowDatabase.SelectedIndex == 1)
+                {
+                    using (var con = new SqlConnection(conString))
+                        if (con.State != ConnectionState.Open)
+                            con.Open();
+                        string sqlUsers = @"Select * FROM [user]";
+                        adapt = new SqlDataAdapter();
+                        ds = new DataSet();
+                        cmd = new SqlCommand(sqlUsers, con);
+                        adapt.SelectCommand = cmd;
+                        adapt.Fill(ds, "UserInfo");
+                        dataGridViewDelete.DataSource = ds;
+                        dataGridViewDelete.DataMember = "UserInfo";
+                        lblRecordsCount.Text = userCount().ToString();
+                        if (con.State == ConnectionState.Open)
+                            con.Close();
+                }
+                else if(cBoxShowDatabase.SelectedIndex == 2)
+                {
+                    using (var con = new SqlConnection(conString))
+                        if (con.State != ConnectionState.Open)
+                            con.Open();
+                        string sqlKeys = @"Select * FROM [userKey]";
+                        adapt = new SqlDataAdapter();
+                        ds = new DataSet();
+                        cmd = new SqlCommand(sqlKeys, con);
+                        adapt.SelectCommand = cmd;
+                        adapt.Fill(ds, "KeyInfo");
+                        dataGridViewDelete.DataSource = ds;
+                        dataGridViewDelete.DataMember = "KeyInfo";
+                        lblRecordsCount.Text = userCount().ToString();
+                        if (con.State == ConnectionState.Open)
+                            con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please select the table to show","Select table",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
                 
-                con.Open();
-
-                string sql;
-                adapt = new SqlDataAdapter();
-                sql = @"Select * FROM [user]";
-                cmd = new SqlCommand(sql, con);
-                ds = new DataSet();
-                adapt.SelectCommand = cmd;
-                adapt.Fill(ds, "Info");
-                dataGridViewDelete.DataSource = ds;
-                dataGridViewDelete.DataMember = "Info";
-                lblUserCount.Text = userCount().ToString();
-                if (con.State == ConnectionState.Open)
-                    con.Close();
+               
             }
             catch (Exception ex)
             {
@@ -666,6 +747,10 @@ namespace Crypyography
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            dataGridViewDelete.Visible = false;
+            btnSearch.Enabled = false;
+            lblRecordsCount.Text = "x";
+            cBoxShowDatabase.SelectedIndex = 0;
             txtUserDeleteId.Clear();
         }
 
@@ -723,9 +808,12 @@ namespace Crypyography
 
                     if (isEncypted == true)
                     {
-                        MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         lblEn.Text = output;
                         cboxDeleteEn.Enabled = true;
+                        MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //insertUserKey(getUserId(), txtFilePathEn.Text, attachementTypeSelected(), txtRepeatKeyEn.Text);
+                        
+
                     }
                     else
                     {
@@ -752,6 +840,15 @@ namespace Crypyography
         private void btnCancel_Click(object sender, EventArgs e)
         {
             cleanTabOne();
+            cboxOption.SelectedIndex = 0;
+        }
+
+        private void cBoxShowDatabase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cBoxShowDatabase.SelectedIndex == 1 || cBoxShowDatabase.SelectedIndex == 2)
+                btnSearch.Enabled = true;
+            //else
+                //MessageBox.Show("Please select the table you want to show","Select table",MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
     }
 }

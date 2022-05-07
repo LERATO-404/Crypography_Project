@@ -85,6 +85,7 @@ namespace Crypyography
                     string userNameAdmin = txtUserNameEmail.Text.ToLower();
                        
                     string query = "SELECT * from [user] WHERE username ='" + txtUserNameEmail.Text + "' AND password ='" + encryptPass + "'";
+                    
                     if (txtPasswordLog.Text == decryptPassword(encryptPass))
                     {
                         
@@ -99,7 +100,9 @@ namespace Crypyography
                                 //landingP.Admin.Enabled = true;
                                 landingP.tControl.TabPages.Add(landingP.Admin); // show admin tab when the admin log in
                             }
+                            
                             landingP.Show(); //show landing page
+                            landingP.lblWelcome.Text = txtUserNameEmail.Text;
                             myReader.Close();
                             this.Hide();
 
