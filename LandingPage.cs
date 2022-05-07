@@ -451,6 +451,7 @@ namespace Crypyography
             catch(CryptographicException cryptoerr)
             {
                 MessageBox.Show("Incorrect decryption key","Incorrect Key",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                txtKeyDe.Focus();
                 return false;
             } 
             //string EncryptionKey = "MAKV2SPBNI99212";         
@@ -595,8 +596,6 @@ namespace Crypyography
                         //string input = fileName + fileExtension; // original filePath + the extension
                         string output = fileName + "_dec" + fileExtension; // the new encrypted file path
 
-
-                    
                         bool isDecoded = this.Decode(fileName, output, txtKeyDe.Text); // encode file and save it as output
                         if (isDecoded == true)
                         {
