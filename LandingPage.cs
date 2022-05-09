@@ -501,7 +501,7 @@ namespace Crypyography
                 if (rbFile.Checked || rbFolder.Checked || rbPhoto.Checked || rbRar.Checked)
                 {
 
-                    if (cboxOption.SelectedIndex == 1 && !(lblSelectedFile.Text.Contains("_enc")) && !(lblSelectedFile.Text.Contains("_dec"))) //encryption tab
+                    if (cboxOption.SelectedIndex == 1 && !(lblSelectedFile.Text.Contains("_enc"))) //encryption tab
                     {
                         txtFilePathEn.Text = lblSelectedFile.Text;
                         if (rbFile.Checked == true && (lblSelectedFile.Text.Contains(".txt")))
@@ -533,11 +533,8 @@ namespace Crypyography
                         {
                             MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        
-
-
                     }
-                    else if (cboxOption.SelectedIndex == 2 && (lblSelectedFile.Text.Contains("_enc") || lblSelectedFile.Text.Contains("_dec"))) //decryption tab
+                    else if (cboxOption.SelectedIndex == 2 && (lblSelectedFile.Text.Contains("_enc") || !(lblSelectedFile.Text.Contains("_dec")))) //decryption tab
                     {
                         txtFilePathDe.Text = lblSelectedFile.Text;
                         tControl.SelectedTab = Decrypt;
@@ -608,9 +605,10 @@ namespace Crypyography
                     
                         string fileName = txtFilePathDe.Text;
                         string fileExtension = Path.GetExtension(txtFilePathDe.Text); // extension of the filePath
+                        string output = fileName.Replace("_enc", "_dec");
                         //string input = fileName + fileExtension; // original filePath + the extension
-                        string output = fileName + "_dec" + fileExtension; // the new encrypted file path
-
+                        //string output = fileName + "_dec" + fileExtension; // the new encrypted file path
+                        
                         bool isDecoded = this.Decode(fileName, output, txtKeyDe.Text); // encode file and save it as output
                         if (isDecoded == true)
                         {
@@ -827,8 +825,18 @@ namespace Crypyography
                     
                     string fileName = txtFilePathEn.Text;
                     string fileExtension = Path.GetExtension(txtFilePathEn.Text); // extension of the filePath
+                    string output = "";
+                    if (fileName.Contains("_dec"))
+                    {
+                        output = fileName.Replace("_dec", "_enc");
+                    }
+                    else
+                    {
+                        output = Path.ChangeExtension(fileName, "_enc" + fileExtension);
+                    }
+                    
                     //string input = fileName; // original filePath + the extension
-                    string output = fileName + "_enc" + fileExtension; // the new encrypted file path
+                    //string output = fileName + "_enc" + fileExtension; // the new encrypted file path
                     bool isEncypted = this.Encode(fileName, output, txtRepeatKeyEn.Text); // encode file and save it as output
                     
                     if (isEncypted == true)
