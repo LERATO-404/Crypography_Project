@@ -360,13 +360,13 @@ namespace Crypyography
         }
         private bool Encode(string inputFilePath, string outputfilePath, string EncryptionKey)
         {
-            bool isFileEncrypted = false;
+            
             try
             {
                 //string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
                 //string EncryptionKey = txtRepeatKeyEn.Text; //include key in as the parameter
                 byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
-                
+                bool isFileEncrypted = false;
                 using (Aes encryptor = Aes.Create())
                 {
                     encryptor.KeySize = 256;
@@ -380,13 +380,28 @@ namespace Crypyography
                     {
                         using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
                         {
-                            
-                            using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                            if(rbFile.Checked == true || rbRar.Checked == true)
                             {
-                                int data;
-                                while ((data = fsInput.ReadByte()) != -1)
+                                using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
                                 {
-                                    cs.WriteByte((byte)data);
+                                    int data;
+                                    while ((data = fsInput.ReadByte()) != -1)
+                                    {
+                                        cs.WriteByte((byte)data);
+                                    }
+                                    fsInput.Close();
+                                }
+                            }
+                            else
+                            {
+                                using (var stream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                                {
+                                    int data;
+                                    while ((data = stream.ReadByte()) != -1)
+                                    {
+                                        cs.WriteByte((byte)data);
+                                    }
+                                    stream.Close();
                                 }
                             }
                         }
@@ -403,10 +418,10 @@ namespace Crypyography
                 return isFileEncrypted;
 
             }
-            catch 
+            catch(Exception ex)
             {
-                //MessageBox.Show("File is Encypted", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return isFileEncrypted;
+                //MessageBox.Show("File is Encypted"+ex, "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
 
             
@@ -522,7 +537,7 @@ namespace Crypyography
 
 
                     }
-                    else if (cboxOption.SelectedIndex == 2 && lblSelectedFile.Text.Contains("_enc")) //decryption tab
+                    else if (cboxOption.SelectedIndex == 2 && (lblSelectedFile.Text.Contains("_enc") || lblSelectedFile.Text.Contains("_dec"))) //decryption tab
                     {
                         txtFilePathDe.Text = lblSelectedFile.Text;
                         tControl.SelectedTab = Decrypt;
