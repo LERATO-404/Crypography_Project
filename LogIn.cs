@@ -107,7 +107,7 @@ namespace Crypyography
                         }
                         else
                         {
-                            MessageBox.Show("Data not found", "Information");
+                            MessageBox.Show("Sorry, Username and password you entered doesn't belong to an account. Please double-check.", "Information",MessageBoxButtons.OK,MessageBoxIcon.Error);
                         }
                     }
                 }
