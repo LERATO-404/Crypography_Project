@@ -25,9 +25,8 @@ namespace Crypyography
         SqlDataAdapter adapt;
         DataSet ds;
         SqlDataReader myReader;
-        string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
-            C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
-
+        string conString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=
+        |DataDirectory|\App_Data\CryptographyDB.mdf; Integrated Security = True";
 
         public LandingPage()
         {

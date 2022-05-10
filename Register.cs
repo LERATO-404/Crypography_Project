@@ -19,14 +19,9 @@ namespace Crypyography
         //private static string conString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=
         //|DataDirectory|\CryptographyDB.mdf; Integrated Security = True"; 
 
-        //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security =
-        //True";
+       
         SqlConnection con;
         SqlCommand cmd;
-        
-
-
-
 
         public Register()
         {
@@ -36,8 +31,8 @@ namespace Crypyography
         private void Register_Load(object sender, EventArgs e)
         {
 
-            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
-            C:\Users\LAVAS\Desktop\CMPG 215 - INFORMATION SECURITY\cryptography-project\Crypyography\App_Data\CryptographyDB.mdf;Integrated Security=True";
+            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=
+        |DataDirectory|\App_Data\CryptographyDB.mdf; Integrated Security = True";
             con = new SqlConnection(conString);
             
         }
