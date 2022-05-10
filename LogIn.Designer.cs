@@ -85,7 +85,7 @@ namespace Crypyography
             this.btnLogIn.Location = new System.Drawing.Point(63, 152);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(162, 23);
-            this.btnLogIn.TabIndex = 4;
+            this.btnLogIn.TabIndex = 3;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.button1_Click);
@@ -122,7 +122,7 @@ namespace Crypyography
             this.lblSignIn.Location = new System.Drawing.Point(186, 32);
             this.lblSignIn.Name = "lblSignIn";
             this.lblSignIn.Size = new System.Drawing.Size(43, 13);
-            this.lblSignIn.TabIndex = 6;
+            this.lblSignIn.TabIndex = 4;
             this.lblSignIn.Text = "Sign up";
             this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
             // 

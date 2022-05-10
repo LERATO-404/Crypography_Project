@@ -85,7 +85,7 @@ namespace Crypyography
             this.lblSignIn.Location = new System.Drawing.Point(155, 26);
             this.lblSignIn.Name = "lblSignIn";
             this.lblSignIn.Size = new System.Drawing.Size(40, 13);
-            this.lblSignIn.TabIndex = 20;
+            this.lblSignIn.TabIndex = 8;
             this.lblSignIn.Text = "Sign In";
             this.lblSignIn.Click += new System.EventHandler(this.label11_Click);
             // 
@@ -150,7 +150,7 @@ namespace Crypyography
             this.btnRegister.Location = new System.Drawing.Point(50, 295);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(172, 32);
-            this.btnRegister.TabIndex = 9;
+            this.btnRegister.TabIndex = 7;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);

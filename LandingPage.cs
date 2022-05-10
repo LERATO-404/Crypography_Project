@@ -151,7 +151,7 @@ namespace Crypyography
             fileToOpen.Title = "Select File";
             fileToOpen.InitialDirectory = @"C:\";
             fileToOpen.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt|Image Files(*.jpg; *.jpeg; *.gif; *.png; *.bmp)| *.jpg; *.jpeg; *.gif; *.png; *.bmp)|RAR|*.rar";
-            fileToOpen.FilterIndex = 2;
+            fileToOpen.FilterIndex = 1;
             fileToOpen.ShowDialog();
 
             if (rbFile.Checked || rbPhoto.Checked || rbRar.Checked)
@@ -504,7 +504,7 @@ namespace Crypyography
                     if (cboxOption.SelectedIndex == 1 && !(lblSelectedFile.Text.Contains("_enc"))) //encryption tab
                     {
                         txtFilePathEn.Text = lblSelectedFile.Text;
-                        if (rbFile.Checked == true && (lblSelectedFile.Text.Contains(".txt")))
+                        if (rbFile.Checked == true && ((lblSelectedFile.Text.Contains(".txt")) || (lblSelectedFile.Text.Contains(".docx")) || (lblSelectedFile.Text.Contains(".pdf"))))
                         {
                             photoBoxEn.Visible = false;
                             txtFileEnContent.Text = File.ReadAllText(fileToOpen.FileName);
@@ -534,11 +534,36 @@ namespace Crypyography
                             MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else if (cboxOption.SelectedIndex == 2 && (lblSelectedFile.Text.Contains("_enc") || !(lblSelectedFile.Text.Contains("_dec")))) //decryption tab
+                    else if (cboxOption.SelectedIndex == 2 && (lblSelectedFile.Text.Contains("_enc") && !(lblSelectedFile.Text.Contains("_dec")))) //decryption tab
                     {
-                        txtFilePathDe.Text = lblSelectedFile.Text;
-                        tControl.SelectedTab = Decrypt;
-                        Decrypt.Show();
+                        
+                        if (rbFile.Checked == true && ((lblSelectedFile.Text.Contains(".txt")) || (lblSelectedFile.Text.Contains(".docx")) || (lblSelectedFile.Text.Contains(".pdf"))))
+                        {
+                          
+                            txtFilePathDe.Text = lblSelectedFile.Text;
+                            tControl.SelectedTab = Decrypt;
+                            Decrypt.Show();
+
+                        }
+                        else if (rbPhoto.Checked == true)
+                        {
+                            
+                            txtFilePathDe.Text = lblSelectedFile.Text;
+                            tControl.SelectedTab = Decrypt;
+                            Decrypt.Show();
+
+                        }
+                        else if (rbRar.Checked == true && (lblSelectedFile.Text.Contains(".rar")))
+                        {
+                            txtFilePathDe.Text = lblSelectedFile.Text;
+                            tControl.SelectedTab = Decrypt;
+                            Decrypt.Show();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select the correct file", "Selected File incorect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -612,15 +637,15 @@ namespace Crypyography
                         bool isDecoded = this.Decode(fileName, output, txtKeyDe.Text); // encode file and save it as output
                         if (isDecoded == true)
                         {
-                            MessageBox.Show("File is Decrypted", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("File Decrypted Successfully", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             lblDe.Text = output;
-                            if (rbFile.Checked == true)
-                            {
+                            if (rbFile.Checked == true && ((lblSelectedFile.Text.Contains(".txt")) || (lblSelectedFile.Text.Contains(".docx")) || (lblSelectedFile.Text.Contains(".pdf"))))
+                        {
                                 photoBoxDe.Visible = false;
                                 txtFileDe.Text = File.ReadAllText(lblDe.Text);
                             }
-                            else if (rbRar.Checked == true)
-                            {
+                            else if (rbRar.Checked == true && (lblSelectedFile.Text.Contains(".rar")))
+                        {
                                 photoBoxDe.Visible = false;
                                 txtFileDe.Text = "Rar File";
                             }
@@ -843,7 +868,7 @@ namespace Crypyography
                     {
                         lblEn.Text = output;
                         cboxDeleteEn.Enabled = true;
-                        MessageBox.Show("File is Encypted Successfully", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("File Encypted Successfully. Please do not change the file name", "The file is encrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
                     }
                     else

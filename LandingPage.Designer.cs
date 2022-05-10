@@ -59,6 +59,7 @@ namespace Crypyography
             this.btnDoneEn = new System.Windows.Forms.Button();
             this.btnCancelEn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblsuggesstions = new System.Windows.Forms.Label();
             this.btnEncrypt = new System.Windows.Forms.Button();
             this.lblEn = new System.Windows.Forms.Label();
             this.txtRepeatKeyEn = new System.Windows.Forms.TextBox();
@@ -93,7 +94,6 @@ namespace Crypyography
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblsuggesstions = new System.Windows.Forms.Label();
             this.tControl.SuspendLayout();
             this.ChooseFile.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,7 +154,7 @@ namespace Crypyography
             this.cboxOption.Location = new System.Drawing.Point(48, 246);
             this.cboxOption.Name = "cboxOption";
             this.cboxOption.Size = new System.Drawing.Size(121, 21);
-            this.cboxOption.TabIndex = 6;
+            this.cboxOption.TabIndex = 5;
             this.cboxOption.Text = "Choose Option";
             this.cboxOption.SelectedIndexChanged += new System.EventHandler(this.cboxOption_SelectedIndexChanged);
             // 
@@ -164,7 +164,7 @@ namespace Crypyography
             this.btnProceed.Location = new System.Drawing.Point(533, 293);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(98, 32);
-            this.btnProceed.TabIndex = 7;
+            this.btnProceed.TabIndex = 6;
             this.btnProceed.Text = "Proceed";
             this.btnProceed.UseVisualStyleBackColor = true;
             this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
@@ -175,7 +175,7 @@ namespace Crypyography
             this.btnCancel.Location = new System.Drawing.Point(637, 293);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 32);
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -241,7 +241,7 @@ namespace Crypyography
             this.lblLogOff.Location = new System.Drawing.Point(685, 9);
             this.lblLogOff.Name = "lblLogOff";
             this.lblLogOff.Size = new System.Drawing.Size(43, 13);
-            this.lblLogOff.TabIndex = 13;
+            this.lblLogOff.TabIndex = 8;
             this.lblLogOff.Text = "Log out";
             this.lblLogOff.Click += new System.EventHandler(this.lblLogOff_Click);
             // 
@@ -264,7 +264,7 @@ namespace Crypyography
             this.rbPhoto.Location = new System.Drawing.Point(6, 42);
             this.rbPhoto.Name = "rbPhoto";
             this.rbPhoto.Size = new System.Drawing.Size(53, 17);
-            this.rbPhoto.TabIndex = 13;
+            this.rbPhoto.TabIndex = 2;
             this.rbPhoto.TabStop = true;
             this.rbPhoto.Text = "Photo";
             this.rbPhoto.UseVisualStyleBackColor = true;
@@ -276,7 +276,7 @@ namespace Crypyography
             this.rbRar.Location = new System.Drawing.Point(6, 65);
             this.rbRar.Name = "rbRar";
             this.rbRar.Size = new System.Drawing.Size(42, 17);
-            this.rbRar.TabIndex = 12;
+            this.rbRar.TabIndex = 3;
             this.rbRar.TabStop = true;
             this.rbRar.Text = "Rar";
             this.rbRar.UseVisualStyleBackColor = true;
@@ -288,7 +288,7 @@ namespace Crypyography
             this.rbFile.Location = new System.Drawing.Point(6, 19);
             this.rbFile.Name = "rbFile";
             this.rbFile.Size = new System.Drawing.Size(65, 17);
-            this.rbFile.TabIndex = 10;
+            this.rbFile.TabIndex = 1;
             this.rbFile.TabStop = true;
             this.rbFile.Text = "Text File";
             this.rbFile.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@ namespace Crypyography
             this.btnChooseFile.Location = new System.Drawing.Point(48, 217);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(75, 23);
-            this.btnChooseFile.TabIndex = 9;
+            this.btnChooseFile.TabIndex = 4;
             this.btnChooseFile.Text = "Choose File";
             this.btnChooseFile.UseVisualStyleBackColor = true;
             this.btnChooseFile.Click += new System.EventHandler(this.button1_Click);
@@ -409,7 +409,7 @@ namespace Crypyography
             this.btnDoneEn.Location = new System.Drawing.Point(540, 362);
             this.btnDoneEn.Name = "btnDoneEn";
             this.btnDoneEn.Size = new System.Drawing.Size(98, 32);
-            this.btnDoneEn.TabIndex = 10;
+            this.btnDoneEn.TabIndex = 4;
             this.btnDoneEn.Text = "Done";
             this.btnDoneEn.UseVisualStyleBackColor = true;
             this.btnDoneEn.Click += new System.EventHandler(this.btnDoneEn_Click);
@@ -420,7 +420,7 @@ namespace Crypyography
             this.btnCancelEn.Location = new System.Drawing.Point(644, 362);
             this.btnCancelEn.Name = "btnCancelEn";
             this.btnCancelEn.Size = new System.Drawing.Size(98, 32);
-            this.btnCancelEn.TabIndex = 9;
+            this.btnCancelEn.TabIndex = 5;
             this.btnCancelEn.Text = "Cancel";
             this.btnCancelEn.UseVisualStyleBackColor = true;
             this.btnCancelEn.Click += new System.EventHandler(this.btnCancelEn_Click);
@@ -442,13 +442,22 @@ namespace Crypyography
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Encryption Key";
             // 
+            // lblsuggesstions
+            // 
+            this.lblsuggesstions.AutoSize = true;
+            this.lblsuggesstions.Location = new System.Drawing.Point(108, 134);
+            this.lblsuggesstions.Name = "lblsuggesstions";
+            this.lblsuggesstions.Size = new System.Drawing.Size(68, 13);
+            this.lblsuggesstions.TabIndex = 14;
+            this.lblsuggesstions.Text = "suggesstions";
+            // 
             // btnEncrypt
             // 
             this.btnEncrypt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEncrypt.Location = new System.Drawing.Point(26, 125);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 13;
+            this.btnEncrypt.TabIndex = 3;
             this.btnEncrypt.Text = "Encrypt";
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
@@ -469,7 +478,7 @@ namespace Crypyography
             this.txtRepeatKeyEn.Location = new System.Drawing.Point(26, 97);
             this.txtRepeatKeyEn.Name = "txtRepeatKeyEn";
             this.txtRepeatKeyEn.Size = new System.Drawing.Size(240, 20);
-            this.txtRepeatKeyEn.TabIndex = 4;
+            this.txtRepeatKeyEn.TabIndex = 2;
             // 
             // label6
             // 
@@ -485,7 +494,7 @@ namespace Crypyography
             this.txtKeyEn.Location = new System.Drawing.Point(26, 48);
             this.txtKeyEn.Name = "txtKeyEn";
             this.txtKeyEn.Size = new System.Drawing.Size(240, 20);
-            this.txtKeyEn.TabIndex = 2;
+            this.txtKeyEn.TabIndex = 1;
             this.txtKeyEn.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // cboxDeleteEn
@@ -562,7 +571,7 @@ namespace Crypyography
             this.browseDe.Location = new System.Drawing.Point(26, 83);
             this.browseDe.Name = "browseDe";
             this.browseDe.Size = new System.Drawing.Size(75, 23);
-            this.browseDe.TabIndex = 12;
+            this.browseDe.TabIndex = 2;
             this.browseDe.Text = "Decrypt";
             this.browseDe.UseVisualStyleBackColor = true;
             this.browseDe.Click += new System.EventHandler(this.browseDe_Click);
@@ -573,7 +582,7 @@ namespace Crypyography
             this.cboxDeleteDe.Location = new System.Drawing.Point(26, 138);
             this.cboxDeleteDe.Name = "cboxDeleteDe";
             this.cboxDeleteDe.Size = new System.Drawing.Size(185, 17);
-            this.cboxDeleteDe.TabIndex = 0;
+            this.cboxDeleteDe.TabIndex = 3;
             this.cboxDeleteDe.Text = "Delete original file after decryption";
             this.cboxDeleteDe.UseVisualStyleBackColor = true;
             // 
@@ -582,7 +591,7 @@ namespace Crypyography
             this.txtKeyDe.Location = new System.Drawing.Point(26, 48);
             this.txtKeyDe.Name = "txtKeyDe";
             this.txtKeyDe.Size = new System.Drawing.Size(240, 20);
-            this.txtKeyDe.TabIndex = 2;
+            this.txtKeyDe.TabIndex = 1;
             // 
             // btnCancelDe
             // 
@@ -590,7 +599,7 @@ namespace Crypyography
             this.btnCancelDe.Location = new System.Drawing.Point(630, 356);
             this.btnCancelDe.Name = "btnCancelDe";
             this.btnCancelDe.Size = new System.Drawing.Size(98, 32);
-            this.btnCancelDe.TabIndex = 9;
+            this.btnCancelDe.TabIndex = 5;
             this.btnCancelDe.Text = "Cancel";
             this.btnCancelDe.UseVisualStyleBackColor = true;
             this.btnCancelDe.Click += new System.EventHandler(this.btnCancelDe_Click);
@@ -601,7 +610,7 @@ namespace Crypyography
             this.btnDoneDe.Location = new System.Drawing.Point(526, 356);
             this.btnDoneDe.Name = "btnDoneDe";
             this.btnDoneDe.Size = new System.Drawing.Size(98, 32);
-            this.btnDoneDe.TabIndex = 8;
+            this.btnDoneDe.TabIndex = 4;
             this.btnDoneDe.Text = "Done";
             this.btnDoneDe.UseVisualStyleBackColor = true;
             this.btnDoneDe.Click += new System.EventHandler(this.btnDoneDe_Click);
@@ -673,7 +682,7 @@ namespace Crypyography
             this.btnDelete.Location = new System.Drawing.Point(13, 218);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 10;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.button3_Click);
@@ -721,7 +730,7 @@ namespace Crypyography
             this.cBoxShowDatabase.Location = new System.Drawing.Point(165, 22);
             this.cBoxShowDatabase.Name = "cBoxShowDatabase";
             this.cBoxShowDatabase.Size = new System.Drawing.Size(121, 21);
-            this.cBoxShowDatabase.TabIndex = 9;
+            this.cBoxShowDatabase.TabIndex = 1;
             this.cBoxShowDatabase.SelectedIndexChanged += new System.EventHandler(this.cBoxShowDatabase_SelectedIndexChanged);
             // 
             // txtUserDeleteId
@@ -729,7 +738,7 @@ namespace Crypyography
             this.txtUserDeleteId.Location = new System.Drawing.Point(165, 78);
             this.txtUserDeleteId.Name = "txtUserDeleteId";
             this.txtUserDeleteId.Size = new System.Drawing.Size(121, 20);
-            this.txtUserDeleteId.TabIndex = 7;
+            this.txtUserDeleteId.TabIndex = 3;
             // 
             // btnClear
             // 
@@ -739,7 +748,7 @@ namespace Crypyography
             this.btnClear.Location = new System.Drawing.Point(280, 140);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 8;
+            this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -751,7 +760,7 @@ namespace Crypyography
             this.btnSearch.Location = new System.Drawing.Point(172, 140);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(102, 23);
-            this.btnSearch.TabIndex = 7;
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Show Data";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -792,15 +801,6 @@ namespace Crypyography
             this.label3.Size = new System.Drawing.Size(118, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Database Management";
-            // 
-            // lblsuggesstions
-            // 
-            this.lblsuggesstions.AutoSize = true;
-            this.lblsuggesstions.Location = new System.Drawing.Point(108, 134);
-            this.lblsuggesstions.Name = "lblsuggesstions";
-            this.lblsuggesstions.Size = new System.Drawing.Size(68, 13);
-            this.lblsuggesstions.TabIndex = 14;
-            this.lblsuggesstions.Text = "suggesstions";
             // 
             // LandingPage
             // 
