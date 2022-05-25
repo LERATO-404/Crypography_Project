@@ -363,7 +363,7 @@ namespace Crypyography
             try
             {
                 //string EncryptionKey = "MAKV2SPBNI99212"; //include key in as the parameter
-                //string EncryptionKey = txtRepeatKeyEn.Text; //include key in as the parameter
+                
                 byte[] saltByte = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
                 bool isFileEncrypted = false;
                 using (Aes encryptor = Aes.Create())
@@ -372,8 +372,8 @@ namespace Crypyography
                     encryptor.BlockSize = 128;
 
                     Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, saltByte, 1000);
-                    encryptor.Key = pdb.GetBytes(encryptor.KeySize / 8);
-                    encryptor.IV = pdb.GetBytes(encryptor.BlockSize / 8);
+                    encryptor.Key = pdb.GetBytes(encryptor.KeySize /8);
+                    encryptor.IV = pdb.GetBytes(encryptor.BlockSize /8);
 
                     using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
                     {
@@ -639,12 +639,12 @@ namespace Crypyography
                             MessageBox.Show("File Decrypted Successfully", "The file is decrypted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             lblDe.Text = output;
                             if (rbFile.Checked == true && ((lblSelectedFile.Text.Contains(".txt")) || (lblSelectedFile.Text.Contains(".docx")) || (lblSelectedFile.Text.Contains(".pdf"))))
-                        {
-                                photoBoxDe.Visible = false;
-                                txtFileDe.Text = File.ReadAllText(lblDe.Text);
+                            {
+                                    photoBoxDe.Visible = false;
+                                    txtFileDe.Text = File.ReadAllText(lblDe.Text);
                             }
                             else if (rbRar.Checked == true && (lblSelectedFile.Text.Contains(".rar")))
-                        {
+                            {
                                 photoBoxDe.Visible = false;
                                 txtFileDe.Text = "Rar File";
                             }
@@ -670,9 +670,9 @@ namespace Crypyography
 
             }
             catch (IOException ex)
-            {
-                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            { MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+               
         }
 
         private void browseEn_Click(object sender, EventArgs e)

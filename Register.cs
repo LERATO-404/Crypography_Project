@@ -72,7 +72,7 @@ namespace Crypyography
                 
                 byte[] encData_byte = new byte[pass.Length];
                 encData_byte = System.Text.Encoding.UTF8.GetBytes(pass);
-                string encodedData = Convert.ToBase64String(encData_byte);
+                string encodedData = Convert.ToBase64String(encData_byte); //how it work
                 return encodedData;
             }
             catch (Exception ex)
@@ -151,7 +151,7 @@ namespace Crypyography
                       cmd.Parameters.AddWithValue("@password", pass);
 
                       cmd.ExecuteNonQuery();
-                      MessageBox.Show("Record inserted!", "New user inserted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      MessageBox.Show("Account Created Successfully!", "Account created", MessageBoxButtons.OK, MessageBoxIcon.Information);
                       clearAll();
                   
              

@@ -113,7 +113,7 @@ namespace Crypyography
                 }
                 else
                 {
-                    MessageBox.Show("Username or Password is empty", "Information");
+                    MessageBox.Show("Username or Password is empty", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 con.Close();
                 
