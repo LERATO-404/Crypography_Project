@@ -22,6 +22,7 @@ namespace Crypyography
        
         SqlConnection con;
         SqlCommand cmd;
+        
 
         public Register()
         {
@@ -109,7 +110,7 @@ namespace Crypyography
            
             if (pass != "" && confirmPass != "")
             {
-                if (pass.ToString().Trim().ToLower() == confirmPass.ToString().Trim().ToLower())
+                if ((pass.ToString().Trim()).CompareTo(confirmPass.ToString().Trim()) == 0)
                 {
                     return true;
                 }
@@ -149,7 +150,6 @@ namespace Crypyography
                       cmd.Parameters.AddWithValue("@userName", txtUserName.Text);
                       cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                       cmd.Parameters.AddWithValue("@password", pass);
-
                       cmd.ExecuteNonQuery();
                       MessageBox.Show("Account Created Successfully!", "Account created", MessageBoxButtons.OK, MessageBoxIcon.Information);
                       clearAll();

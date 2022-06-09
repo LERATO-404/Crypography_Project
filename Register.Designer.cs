@@ -73,7 +73,7 @@ namespace Crypyography
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Location = new System.Drawing.Point(300, 362);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(288, 58);
+            this.groupBox3.Size = new System.Drawing.Size(283, 58);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             // 
@@ -117,7 +117,7 @@ namespace Crypyography
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(300, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(288, 337);
+            this.groupBox2.Size = new System.Drawing.Size(283, 337);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             // 
