@@ -1,0 +1,10 @@
+
+
+App_Data/
+[Bb]in/
+[Oo]bj/
+Properties/
+App.config
+*.csproj
+#Visual Studio
+.vs/
