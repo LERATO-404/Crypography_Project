@@ -6,5 +6,6 @@ App_Data/
 Properties/
 App.config
 *.csproj
+*.csproj.user
 #Visual Studio
 .vs/
